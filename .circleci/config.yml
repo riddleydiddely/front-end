@@ -6,16 +6,16 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:10.16.3
+      - image: cimg/node:19.8.0
     steps:
       - checkout
       - run:
           name: Update NPM
-          command: "sudo npm install -g npm@5"
+          command: "sudo npm install -g npm@9.6.2"
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
-          name: Install Dependencies
+          name: Install dependencies
           command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
