@@ -1,0 +1,23 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/nextjs-blog:$COMMIT_SHA', '.']
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/nextjs-blog:$COMMIT_SHA']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'nextjs-blog'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/nextjs-blog:$COMMIT_SHA'
+      - '--region'
+      - 'europe-west1'
+images:
+  - 'gcr.io/$PROJECT_ID/nextjs-blog:$COMMIT_SHA'
+serviceAccount: 'projects/puls-381314/serviceAccounts/7224893779@cloudbuild.gserviceaccount.com'
+options:
+  logging: CLOUD_LOGGING_ONLY
