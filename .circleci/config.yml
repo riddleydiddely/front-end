@@ -2,31 +2,77 @@ version: 2.1
 orbs:
   gcp-gcr: circleci/gcp-gcr@0.6.1
   cloudrun: circleci/gcp-cloud-run@1.0.0
+  node: circleci/node@5.1.0
 jobs:
-  build:
-    working_directory: ~/repo
+  build_node_js:
     docker:
       - image: cimg/node:19.8.0
+    resource_class: small
     steps:
       - checkout
       - run:
           name: Update NPM
           command: "sudo npm install -g npm@9.6.2"
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - run: npm run test
+  build_push_image_cloud_run_mangaged:
+    docker:
+      - image: google/cloud-sdk
+    environment:
+      PROJECT_ID: $PROJECT_ID
+      CLOUD_RUN_SERVICE: next-js-blog
+      REGION: eu-west2
+    steps:
+      - checkout
+      - run: echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV
+      - run: echo ${GCP_PROJECT_KEY} | base64 --decode >  $HOME/gcp-key.json
+      - run: gcloud auth activate-service-account --key-file= $HOME/gcp-key.json
+      - run: gcloud config set project $PROJECT_ID
+      - run: gcloud builds submit --tag gcr.io/$PROJECT_ID/$CLOUD_RUN_SERVICE
+      - run: gcloud run deploy $CLOUD_RUN_SERVICE --image gcr.io/$PROJECT_ID/$CLOUD_RUN_SERVICE --region $REGION --platform managed
+  build_and_deploy:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
       - run:
-          name: Install dependencies
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
+          name: Build app binary and Docker image
+          command: |
+            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV
+            echo ${GCP_PROJECT_KEY} | base64 --decode --ignore-garbage > $HOME/gcloud-service-key.json
+            echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
+      - cloudrun/init:
+          gcloud-service-key: GOOGLE_CLOUD_KEYS
+      - cloudrun/build:
+          tag: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/test-${CIRCLE_SHA1}'
+      - cloudrun/deploy:
+          image: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/test-${CIRCLE_SHA1}'
+          platform: managed
+          region: eu-west1
+          service-name: example-service
+          unauthenticated: true
       - run:
-          name: Run tests
-          command: npm run test
+          command: >
+            # A simple example of how a deployed managed service could be
+            verified or further tested.
+
+            # This step will send request our "API" and fail if there is
+            unexpected output.
+
+            GCP_API_RESULTS=$(curl -s "$GCP_DEPLOY_ENDPOINT")
+
+            if [ "$GCP_API_RESULTS" != "Hello World!" ]; then
+              echo "Result is unexpected"
+              echo 'Result: '
+              curl -s "$GCP_DEPLOY_ENDPOINT"
+              exit 1;
+            fi
+          name: Test managed deployed service.
 #  build_push_image_cloud_run_mangaged:
 #    docker:
-#      - image: circleci/python:3.7.4
+#      - image: cimg/node:19.8.0
 #    steps:
 #      - checkout
 #      - setup_remote_docker:
@@ -39,27 +85,30 @@ jobs:
 #            echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
 #            echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
 #            echo 'export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV && source $BASH_ENV
-#            pip install --user -r requirements.txt
-#            pyinstaller -F hello_world.py
-#            docker build -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME:$TAG .
+#            sudo npm install -g npm@9.6.2
+#            sudo npm install next react react-dom
+#            sudo npm run build
+#            docker build -t eu.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME -t eu.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME:$TAG .
 #      - gcp-gcr/gcr-auth:
 #          gcloud-service-key: GOOGLE_CLOUD_KEYS
 #          google-project-id: GOOGLE_PROJECT_ID
 #          google-compute-zone: GOOGLE_COMPUTE_ZONE
+#      - gcp-gcr/build-image:
+#          image: nextjs-blog
+#          tag: '${CIRCLE_SHA1}'
+#          registry-url: eu.gcr.io
 #      - gcp-gcr/push-image:
 #          google-project-id: GOOGLE_PROJECT_ID
-#          registry-url: "us.gcr.io"
+#          registry-url: "eu.gcr.io"
 #          image: $IMAGE_NAME
 #      - cloudrun/deploy:
 #          platform: "managed"
-#          image: "us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME"
+#          image: "eu.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME"
 #          service-name: "orb-gcp-cloud-run"
 #          region: $GOOGLE_COMPUTE_ZONE
 #          unauthenticated: true
+
 workflows:
   build_test_deploy:
     jobs:
-      - build
-#      - build_push_image_cloud_run_mangaged:
-#          requires:
-#            - build
+      - build_and_deploy
