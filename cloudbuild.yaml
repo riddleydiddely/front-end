@@ -2,7 +2,8 @@
 # https://console.cloud.google.com/cloud-build/builds;region=europe-west1?project=puls-381314
 substitutions:
   # _DOCKER_IMAGE_LOCATION Container Registry location. https://console.cloud.google.com/gcr/images/puls-381314?project=puls-381314
-  _DOCKER_IMAGE_LOCATION: 'gcr.io/${PROJECT_ID}/nextjs-blog:${COMMIT_SHA}' # default value
+  _DOCKER_IMAGE_LOCATION: 'gcr.io/${PROJECT_ID}/puls-frontend:${COMMIT_SHA}' # default value
+  _PROJECT_NAME: puls-frontend
 steps:
   # Install dependencies
   - name: node:19.8.1
@@ -27,15 +28,15 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'nextjs-blog'
+      - '${_PROJECT_NAME}'
       - '--image'
       - '${_DOCKER_IMAGE_LOCATION}'
       - '--region'
       - '${LOCATION}' # This is the region associated with the build. https://cloud.google.com/build/docs/configuring-builds/substitute-variable-values
 images:
-  - 'gcr.io/$PROJECT_ID/nextjs-blog:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/${_PROJECT_NAME}:$COMMIT_SHA'
 # For some reason serviceAccount is not overridden. TODO: Investigate
-serviceAccount: 'projects/puls-381314/serviceAccounts/7224893779@cloudbuild.gserviceaccount.com'
+#serviceAccount: 'projects/puls-381314/serviceAccounts/7224893779@cloudbuild.gserviceaccount.com'
 # This option logs everything to cloud logging, otherwise we'd log to bucket also
 options:
   logging: CLOUD_LOGGING_ONLY
