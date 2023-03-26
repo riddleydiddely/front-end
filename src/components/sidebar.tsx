@@ -49,7 +49,7 @@ export default function Sidebar() {
           {MenuItems.map((item, index) => (
             <>
               <li key={index} className={`text-green-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-secondary-green rounded-md mt-2 ${item.spacing ? "mt-9" : "mt-2"}`}>
-                <a className="text-2xl text-white block float-left">
+                <a href={item.route} className="text-2xl text-white block float-left">
                   {item.icon ? item.icon : <RiDashboardFill />}
                 </a>
                 <a href={item.route} className={`text-white text-base font-medium flex-1 ${!open && "hidden"}`}>{item.title}</a>
