@@ -1,0 +1,64 @@
+import { BsArrowLeftShort, BsSearch } from "react-icons/bs";
+import { AiOutlineApi } from "react-icons/ai";
+import { BiHomeAlt2 } from "react-icons/bi";
+import { TbArrowMerge, TbHexagonLetterP } from "react-icons/tb";
+import { RiDashboardFill } from "react-icons/ri";
+import { TbMessages } from "react-icons/tb";
+import { MdAttachMoney } from "react-icons/md";
+import { GoSettings } from "react-icons/go";
+import { VscAccount } from "react-icons/vsc";
+import { HiOutlineInformationCircle } from "react-icons/hi";
+import { useState } from 'react';
+
+const MenuItems = [
+  { title: "Home", route: "home", icon: <BiHomeAlt2 /> },
+  { title: "Dashboards", route: "dashboards", icon: <RiDashboardFill /> },
+  { title: "Reconciliation", route: "reconciliation", icon: <TbArrowMerge /> },
+  { title: "Messages", route: "messages", icon: <TbMessages /> },
+  { title: "Financing", route: "financing", icon: <MdAttachMoney /> },
+  { title: "Connections", route: "connections", spacing: "true", icon: <AiOutlineApi /> },
+  { title: "Settings", route: "settings", icon: <GoSettings /> },
+  { title: "Account", route: "account", icon: <VscAccount /> },
+  { title: "About", route: "about", icon: <HiOutlineInformationCircle /> },
+]
+
+export default function Sidebar() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="flex ">
+      <div className={`bg-main-green h-screen p-5 pt-5 ${open ? "w-72" : "w-20"} relative duration-300`}>
+
+        {/* Expand arrow */}
+        <BsArrowLeftShort className={`text-4xl bg-white text-black rounded-full absolute -right-5 top-100 border border-main-green ${!open && "rotate-180"} mr`} onClick={() => setOpen(!open)}></BsArrowLeftShort>
+
+        {/* Logo */}
+        <div className="inline-flex">
+          <TbHexagonLetterP className="bg-transparent text-white text-4xl rounded cursor-pointer block float-left mr-4"></TbHexagonLetterP>
+          <h1 className={`text-2xl duration-300 text-white ${!open && "scale-0"}`}>Puls</h1>
+        </div>
+
+        {/* Searchbar */}
+        <div className={`flex items-center rounded-md bg-light-white mt-4 px-4 py-2 ${open ? "px-4" : "px-19"}`}>
+          <BsSearch className="text-white text-lg mr-3"></BsSearch>
+          <input type="search" placeholder="Search" className={`text-white bg-transparent w-full outline-none `} />
+        </div>
+
+        {/* Menu items */}
+        <ul className="pt-2">
+          {MenuItems.map((item, index) => (
+            <>
+              <li key={index} className={`text-green-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-secondary-green rounded-md mt-2 ${item.spacing ? "mt-9" : "mt-2"}`}>
+                <a className="text-2xl text-white block float-left">
+                  {item.icon ? item.icon : <RiDashboardFill />}
+                </a>
+                <a href={item.route} className={`text-white text-base font-medium flex-1 ${!open && "hidden"}`}>{item.title}</a>
+              </li>
+            </>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  )
+}

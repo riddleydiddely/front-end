@@ -1,6 +1,6 @@
 //import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-//import Home from "../pages/index";
+//import Home from "../src/pages/index";
 import {expect, jest, test} from '@jest/globals';
 
 
