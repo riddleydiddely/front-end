@@ -7,7 +7,8 @@ import { Body } from "./body";
 
 
 type LayoutProps = {
-    title:string
+    title: string,
+    subtitle?: string
 };
 
 export const Layout = (props: PropsWithChildren<LayoutProps>) => {
