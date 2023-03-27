@@ -1,0 +1,58 @@
+version: 2.1
+orbs:
+  gcp-gcr: circleci/gcp-gcr@0.6.1
+  cloudrun: circleci/gcp-cloud-run@1.0.2
+  node: circleci/node@5.1.0
+jobs:
+  build_and_deploy:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - node/install:
+        node-version: '19.8.0'
+      - run: node --version
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm run test
+          name: Run tests
+      - run:
+          command: npm run build
+          name: Build app
+      - run:
+          name: Managed deployed puls frontend.
+          command: |
+            # This step will send request our "API" and fail if there is
+            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV
+            # Decrypt the key stored in CircleCI's environment variable
+            echo ${GCLOUD_SERVICE_KEY} | base64 --decode --ignore-garbage > /home/circleci/gcloud-service-key.json
+            # Save in envirnoment variables
+            echo 'export GOOGLE_CLOUD_KEYS=$(cat /home/circleci/gcloud-service-key.json)' >> $BASH_ENV
+            echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
+            echo 'export DOCKER=gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}-${CIRCLE_SHA1}' >> $BASH_ENV && source $BASH_ENV
+          gcloud-service-key: GOOGLE_CLOUD_KEYS
+          google-project-id: GOOGLE_PROJECT_ID
+          google-compute-zone: GOOGLE_COMPUTE_ZONE
+          tag: 
+      - cloudrun/init:
+          gcloud-service-key: GOOGLE_CLOUD_KEYS
+          google-compute-zone: GOOGLE_COMPUTE_ZONE
+          google-project-id: GOOGLE_PROJECT_ID
+      - cloudrun/build:
+          tag: '${DOCKER}'
+          args: '--gcs-log-dir gs://${CIRCLE_PROJECT_REPONAME}-logs/'
+          
+      - cloudrun/deploy:
+          image: '${DOCKER}'
+          platform: managed
+          # The $GOOGLE_REGION is different from $GOOGLE_COMPUTE_ZONE. 
+          # For example $GOOGLE_REGION=europe-west1 while $GOOGLE_COMPUTE_ZONE=eu-west-1 
+          region: ${GOOGLE_REGION}
+          service-name: puls-frontend
+          unauthenticated: true
+
+workflows:
+  run-jobs:
+    jobs:
+      - build_and_deploy
