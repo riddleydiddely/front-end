@@ -1,6 +1,6 @@
 import { BsArrowLeftShort, BsSearch } from "react-icons/bs";
 import { AiOutlineApi } from "react-icons/ai";
-import { BiHomeAlt2 } from "react-icons/bi";
+
 import { TbArrowMerge, TbHexagonLetterP } from "react-icons/tb";
 import { RiDashboardFill } from "react-icons/ri";
 import { TbMessages } from "react-icons/tb";
@@ -11,7 +11,7 @@ import { HiOutlineInformationCircle } from "react-icons/hi";
 import { useState } from 'react';
 
 const MenuItems = [
-  { title: "Home", route: "home", icon: <BiHomeAlt2 /> },
+  
   { title: "Dashboards", route: "dashboards", icon: <RiDashboardFill /> },
   { title: "Reconciliation", route: "reconciliation", icon: <TbArrowMerge /> },
   { title: "Messages", route: "messages", icon: <TbMessages /> },
@@ -34,8 +34,12 @@ export default function Sidebar() {
 
         {/* Logo */}
         <div className="inline-flex">
-          <TbHexagonLetterP className="bg-transparent text-white text-4xl rounded cursor-pointer block float-left mr-4"></TbHexagonLetterP>
-          <h1 className={`text-2xl duration-300 text-white ${!open && "scale-0"}`}>Puls</h1>
+          <a href="/">
+          <TbHexagonLetterP className="bg-transparent text-white text-4xl rounded cursor-pointer block float-left mr-4">
+            
+          </TbHexagonLetterP>
+          </a>
+          <h1 className={`text-2xl duration-300 text-white ${!open && "hidden"}`}>Puls</h1>
         </div>
 
         {/* Searchbar */}

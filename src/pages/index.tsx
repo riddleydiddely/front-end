@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <Fragment>
-      <Layout title='index'>{
+      <Layout title='Welcome to Puls'>{
         <h1 className='text-black'>Hello PULS!</h1>
         }
       </Layout>
