@@ -26,8 +26,8 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="flex ">
-      <div className={`bg-main-green h-screen p-5 pt-5 ${open ? "w-72" : "w-20"} relative duration-300`}>
+
+      <div className={`fixed bg-main-green h-screen p-5 pt-5 ${open ? "w-72" : "w-20"} relative duration-300`}>
 
         {/* Expand arrow */}
         <BsArrowLeftShort className={`text-4xl bg-white text-black rounded-full absolute -right-5 top-100 border border-main-green ${!open && "rotate-180"} mr`} onClick={() => setOpen(!open)}></BsArrowLeftShort>
@@ -63,6 +63,6 @@ export default function Sidebar() {
         </ul>
       </div>
 
-    </div>
+   
   )
 }

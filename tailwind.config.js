@@ -16,7 +16,7 @@ module.exports = {
         'light-white': 'rgba(255,255,255,0.18)',
         "secondary-green":"#C1D9B7",
         "tetriary-pink": "#E5A298",
-        'off-white': 'rgba(241,241,241,0.7)',
+        'off-white': 'rgba(235,235,235,1)',
       }
     },
   },
