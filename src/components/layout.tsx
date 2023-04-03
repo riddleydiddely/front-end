@@ -1,26 +1,27 @@
 
 import Sidebar from "./sidebar";
-import React, { FC } from 'react';
-import { PropsWithChildren } from 'react'
+import React, { FC, ReactNode } from 'react';
 import { Header } from "./header";
-import { Body } from "./body";
 
 
 type LayoutProps = {
     title: string,
-    subtitle?: string
+    subtitle?: string,
+    children: ReactNode;
 };
 
-export const Layout = (props: PropsWithChildren<LayoutProps>) => {
-    return (<div className="flex" >
+export const Layout = (props: LayoutProps) => {
+    return (
+    <div className="flex" >
         <Sidebar />
         <div>
-            <Header>{props.title}</Header>
-            {/* <div className="bg-off-white w-screen">
-                
-                <Body></Body>
-            </div> */}
+            <Header title={props.title} subtitle="" />
+            <div className="bg-off-white p-12 w-screen h-screen">
+                {props.children}
+            </div>
         </div>
     </div>
     )
 };
+
+

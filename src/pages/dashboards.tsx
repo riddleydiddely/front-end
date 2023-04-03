@@ -1,11 +1,13 @@
 
 import { Fragment } from 'react';
+import Dashboard from '../components/dashboard';
 import { Layout } from "../components/layout";
 
 export default function About() {
     return   <Fragment>
     <Layout title='Dashboard'>
-      <h1 className='text-black'>About</h1>
+      <Dashboard></Dashboard>
     </Layout>
   </Fragment>
   }
+  
