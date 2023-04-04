@@ -53,7 +53,7 @@ export const Header = (props: PropsWithChildren<HeaderProps>) => {
                     <div className="flex items-center gap-x-5 md:gap-x-8">
                         <div className="hidden md:block">
                             <a className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900" href="/login">
-                                <img className="rounded-full h-10 w-10" src="profile_pic_donny.jpeg" alt="profile-pic" />
+                                <img className="rounded-full h-10 w-10" src="/profile_pic_donny.jpeg" alt="profile-pic" />
                             </a>
                         </div>
                         <a className="group inline-flex items-center justify-center rounded-xl py-3 px-5 text-m font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-main-green text-white hover:text-slate-100 hover:bg-secondary-green active:bg-seconndary active:text-blue-100 focus-visible:outline-blue-600" href="/login">
