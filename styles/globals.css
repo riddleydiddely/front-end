@@ -3,6 +3,78 @@
 @import "tailwindcss/utilities";
 
 
+:root {
+  --main-color: rgb(0, 115, 92);
+  --highlight-main-color: rgb(0, 148, 119);
+  --tetriary-color: rgb(158, 158, 158);
+}
+
 .modal {
-    backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(15px);
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modal-box {
+  
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  border-radius: 1rem;
+  background-color: rgb(255, 255, 255);
+  padding: 2rem;
+}
+
+.button-main-large {
+  text-align: center;
+  background-color: var(--main-color);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.button-main-large:hover {
+  background-color: var(--highlight-main-color);
+  color: rgba(255, 255, 255, 1)
+}
+
+
+.button-main {
+  text-align: center;
+  background-color: var(--main-color);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.button-main:hover {
+  background-color: var(--highlight-main-color);
+  color: rgba(255, 255, 255, 1)
+}
+
+
+.button-unavailable {  
+  background-color: var(--tetriary-color);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   }
