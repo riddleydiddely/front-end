@@ -4,7 +4,7 @@ orbs:
   cloudrun: circleci/gcp-cloud-run@1.0.2
   node: circleci/node@5.1.0
 jobs:
-  test:
+  build_and_test:
     docker:
       - image: 'cimg/base:stable'
     steps:
@@ -61,10 +61,10 @@ workflows:
   version: 2
   run-jobs:
     jobs:
-      - test
+      - build_and_test
       - deploy:
           requires:
-            - test
+            - build_and_test
           filters:
             branches:
               only:

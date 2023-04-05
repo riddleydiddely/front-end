@@ -1,6 +1,6 @@
 import { BsArrowLeftShort, BsSearch } from "react-icons/bs";
 import { AiOutlineApi } from "react-icons/ai";
-
+import Link from 'next/link'
 import { TbArrowMerge, TbHexagonLetterP } from "react-icons/tb";
 import { RiDashboardFill } from "react-icons/ri";
 import { TbMessages } from "react-icons/tb";
@@ -53,10 +53,10 @@ export default function Sidebar() {
           {MenuItems.map((item, index) => (
             <>
               <li key={index} className={`text-green-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-secondary-green rounded-md mt-2 ${item.spacing ? "mt-9" : "mt-2"}`}>
-                <a href={item.route} className="text-2xl text-white block float-left">
+                <Link href={`/${item.route}`} className="text-2xl text-white block float-left">
                   {item.icon ? item.icon : <RiDashboardFill />}
-                </a>
-                <a href={item.route} className={`text-white text-base font-medium flex-1 ${!open && "hidden"}`}>{item.title}</a>
+                </Link>
+                <Link href={`/${item.route}`} className={`text-white text-base font-medium flex-1 ${!open && "hidden"}`}>{item.title}</Link>
               </li>
             </>
           ))}
