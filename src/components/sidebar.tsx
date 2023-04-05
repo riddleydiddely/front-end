@@ -1,6 +1,6 @@
 import { BsArrowLeftShort, BsSearch } from "react-icons/bs";
 import { AiOutlineApi } from "react-icons/ai";
-import Link from 'next/link'
+
 import { TbArrowMerge, TbHexagonLetterP } from "react-icons/tb";
 import { RiDashboardFill } from "react-icons/ri";
 import { TbMessages } from "react-icons/tb";
@@ -8,7 +8,8 @@ import { MdAttachMoney } from "react-icons/md";
 import { GoSettings } from "react-icons/go";
 import { VscAccount } from "react-icons/vsc";
 import { HiOutlineInformationCircle } from "react-icons/hi";
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
+import Link from 'next/link';
 
 const MenuItems = [
   
@@ -26,7 +27,6 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false)
 
   return (
-
       <div className={`fixed bg-main-green h-screen p-5 pt-5 ${open ? "w-72" : "w-20"} relative duration-300`}>
 
         {/* Expand arrow */}
@@ -34,11 +34,11 @@ export default function Sidebar() {
 
         {/* Logo */}
         <div className="inline-flex">
-          <a href="/">
+          <Link href="/">
           <TbHexagonLetterP className="bg-transparent text-white text-4xl rounded cursor-pointer block float-left mr-4">
             
           </TbHexagonLetterP>
-          </a>
+          </Link>
           <h1 className={`text-2xl duration-300 text-white ${!open && "hidden"}`}>Puls</h1>
         </div>
 

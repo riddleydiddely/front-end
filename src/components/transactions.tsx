@@ -1,11 +1,11 @@
 import { TransactionData, transactionItems } from '../mockData/transactionMockData'
 import { Fragment, useState } from 'react';
 import Modal from './modal';
+import Suggestions from './suggestions';
 
 export default function Transactions() {
   const [showModal, setShowModal] = useState(false)
-
-
+  const [modalContent, setModalContent] = useState([])
 
   return (
     <Fragment>
@@ -17,6 +17,7 @@ export default function Transactions() {
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-gray-50 dark:bg-gray-800">
                     <tr>
+
                       <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <div className="flex items-center gap-x-3">
                           <input type="checkbox" className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700" />
@@ -31,28 +32,13 @@ export default function Transactions() {
                           </button>
                         </div>
                       </th>
-                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        Date
-                      </th>
-                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        Price
-                      </th>
+                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Date</th>
+                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Price</th>
+                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Status</th>
+                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Customer</th>
+                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Purchase</th>
+                      <th scope="col" className="relative py-3.5 px-4"><span className="">Actions</span></th>
 
-
-                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        Status
-                      </th>
-
-                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        Customer
-                      </th>
-
-                      <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        Purchase
-                      </th>
-                      <th scope="col" className="relative py-3.5 px-4">
-                        <span className="">Actions</span>
-                      </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
@@ -100,7 +86,9 @@ export default function Transactions() {
 
 
 
-        <Modal isVisible={showModal} closeModal={setShowModal}></Modal>
+        <Modal isVisible={showModal} closeModal={setShowModal}>
+          <Suggestions></Suggestions>
+        </Modal>
       </section>
     </Fragment>
 
@@ -137,8 +125,8 @@ function getTransactionRow(transaction: TransactionData, showModal: Function) {
 
 
       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{
-        transaction.items.map((item, index) => (
-          <div className='inline-flex border-gray-400 border m-1 px-2 py-1 rounded-full  bg-gray-200 hover:bg-gray-500 hover:text-white'>{item}</div>
+        transaction.items.map((item, key) => (
+          <div key={key} className='inline-flex border-gray-400 border m-1 px-2 py-1 rounded-full  bg-gray-200 hover:bg-gray-500 hover:text-white'>{item}</div>
         ))
       }</td>
       <td className="px-4 py-4 text-sm whitespace-nowrap">
