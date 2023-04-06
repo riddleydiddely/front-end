@@ -14,8 +14,8 @@ export const Systems: Array<ErpSystems> = [
     available: true
   },
   {
-    name: "Microsoft Dynamics 365",
-    description: "Dynamics 365 is a portfolio of intelligent business applications that delivers superior operational efficiency and breakthrough customer experiences.",
+    name: "Business Central",
+    description: "Business Central is a portfolio of intelligent business applications that delivers superior operational efficiency and breakthrough customer experiences.",
     image_source: 'dynamics_365.jpeg',
     available: true
   },
