@@ -64,12 +64,14 @@
 }
 
 .button-main:hover {
+  cursor: pointer;
   background-color: var(--highlight-main-color);
   color: rgba(255, 255, 255, 1)
 }
 
 
-.button-unavailable {  
+.button-unavailable {
+  text-align: center;  
   background-color: var(--tetriary-color);
   color: rgba(255, 255, 255, 1);
   border-radius: 0.5rem;
@@ -77,4 +79,5 @@
   padding-right: 0.5rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+  pointer-events: none;
   }
