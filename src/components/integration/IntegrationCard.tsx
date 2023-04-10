@@ -20,9 +20,13 @@ export function IntegrationCard(item: IErpSystems) {
                     {item.available}
                 </p>
                 <div className='align-bottom'>
-                    <div onClick={() => setShowModal(true)} className={`${item.available ? "button-main" : "button-unavailable"}`}>
+                    <button onClick={() => setShowModal(true)} className={`${item.available ? "button-main" : "button-unavailable"}`}>
+                        
+                        <a href="https://apps.fortnox.se/oauth-v1/auth?client_id=GQgPFNBPkuoB&redirect_uri=http://localhost:3000/connections/&scope=bookkeeping%20salary&state=somestate123&access_type=offline&response_type=code&account_type=service">
+
                         {item.available ? "Add" : "Coming soon"}
-                    </div>
+                        </a>
+                    </button>
                 </div>
             </div>
             <Modal isVisible={showModal} closeModal={setShowModal} >

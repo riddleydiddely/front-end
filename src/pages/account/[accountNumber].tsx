@@ -11,16 +11,12 @@ const AccountNumber = () => {
   const router = useRouter()
   const { accountNumber } = router.query
 
-  return <Fragment>
-    <Layout title={`Account ${accountNumber}`}>
-      <div>
-        <Link href={"/dashboards"}>
-          <RiArrowGoBackFill></RiArrowGoBackFill>
-        </Link>
-        <Transactions></Transactions>
-      </div>
-    </Layout>
-  </Fragment>
+  return <div>
+  <Link href={"/dashboards"}>
+    <RiArrowGoBackFill></RiArrowGoBackFill>
+  </Link>
+  <Transactions></Transactions>
+</div>
 }
 
 export default AccountNumber

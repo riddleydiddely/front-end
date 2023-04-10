@@ -81,3 +81,13 @@
   padding-bottom: 0.25rem;
   pointer-events: none;
   }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "header header header header"
+      "main main . sidebar"
+      "footer footer footer footer";
+  }
