@@ -2,12 +2,12 @@
 import { Fragment } from 'react';
 import Dashboard from '../components/dashboard';
 import { Layout } from "../components/layout";
+import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function About() {
-    return   <Fragment>
-    <Layout title='Dashboard'>
-      <Dashboard></Dashboard>
-    </Layout>
-  </Fragment>
+  const { data: session } = useSession()
+
+    return <Dashboard></Dashboard>
+    
   }
   

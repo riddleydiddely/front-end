@@ -2,10 +2,6 @@
 import { Fragment } from 'react';
 import { Layout } from "../components/layout";
 
-export default function About() {
-    return   <Fragment>
-    <Layout title='Financing'>
-      <h1 className='text-black'>About</h1>
-    </Layout>
-  </Fragment>
+export default function Financing() {
+    return  <h1 className='text-black'>Financing</h1>
   }
