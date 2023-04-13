@@ -1,7 +1,7 @@
 import { BsArrowLeftShort, BsSearch } from "react-icons/bs";
 import { AiOutlineApi } from "react-icons/ai";
 
-import { TbArrowMerge, TbHexagonLetterP } from "react-icons/tb";
+import { TbArrowMerge, TbHexagonLetterR } from "react-icons/tb";
 import { RiDashboardFill } from "react-icons/ri";
 import { TbMessages } from "react-icons/tb";
 import { MdAttachMoney } from "react-icons/md";
@@ -35,11 +35,11 @@ export default function Sidebar() {
         {/* Logo */}
         <div className="inline-flex">
           <Link href="/">
-          <TbHexagonLetterP className="bg-transparent text-white text-4xl rounded cursor-pointer block float-left mr-4">
+          <TbHexagonLetterR className="bg-transparent text-white text-4xl rounded cursor-pointer block float-left mr-4">
             
-          </TbHexagonLetterP>
+          </TbHexagonLetterR>
           </Link>
-          <h1 className={`text-2xl duration-300 text-white ${!open && "hidden"}`}>Puls</h1>
+          <h1 className={`text-2xl duration-300 text-white ${!open && "hidden"}`}>Riddle</h1>
         </div>
 
         {/* Searchbar */}

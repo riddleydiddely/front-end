@@ -1,11 +1,9 @@
 
-import { Fragment } from 'react';
 import Dashboard from '../components/dashboard';
-import { Layout } from "../components/layout";
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession } from "next-auth/react"
 
-export default function About() {
-  const { data: session } = useSession()
+export default function Dashboards() {
+  const { data: session, status } = useSession({required:true})
 
     return <Dashboard></Dashboard>
     

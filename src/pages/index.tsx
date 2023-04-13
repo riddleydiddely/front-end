@@ -1,10 +1,10 @@
 
-import { Fragment } from 'react';
+import { useSession } from 'next-auth/react';
 import Dashboard from '../components/dashboard';
 
-import { Layout } from "../components/layout";
 
 export default function Home() {
+  const { data: session, status } = useSession({required:true})
   return  <Dashboard></Dashboard>
 }
 

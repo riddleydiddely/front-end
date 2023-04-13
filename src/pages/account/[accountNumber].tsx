@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
 
-import { Fragment } from 'react';
-import Dashboard from '../../components/dashboard';
-import { Layout } from "../../components/layout";
+
 import Transactions from "../../components/transactions";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import Link from 'next/link'
+import { useSession } from 'next-auth/react';
 
 const AccountNumber = () => {
+  const { data: session, status } = useSession({required:true})
   const router = useRouter()
   const { accountNumber } = router.query
 

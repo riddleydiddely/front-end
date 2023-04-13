@@ -12,7 +12,6 @@ export interface IDashboard {
   url: string
 }
 
-
 const options: Props = {
   chart: {
     height: 350,
@@ -59,8 +58,8 @@ const Account3003: ApexOptions['series'] = [{
 ]
 
 export const DashboardData: IDashboard[] = [
-  { title: "SE Payables", subtitle: "% Reconciled for account 3000", data: Account3000, options: options, url: "/account/3000" },
-  { title: "DK Payables", subtitle: "% Reconciled for account 3001", data: Account3001, options: options, url: "/account/3001" },
-  { title: "NO Payables", subtitle: "% Reconciled for account 3002", data: Account3002, options: options, url: "/account/3002" },
-  { title: "UK Payables", subtitle: "% Reconciled for account 3003", data: Account3003, options: options, url: "/account/3003" },
+  { title: "SE Receivables", subtitle: "% Reconciled for account 3000", data: Account3000, options: options, url: "/account/3000" },
+  { title: "DK Receivables", subtitle: "% Reconciled for account 3001", data: Account3001, options: options, url: "/account/3001" },
+  { title: "NO Receivables", subtitle: "% Reconciled for account 3002", data: Account3002, options: options, url: "/account/3002" },
+  { title: "UK Receivables", subtitle: "% Reconciled for account 3003", data: Account3003, options: options, url: "/account/3003" },
 ]
