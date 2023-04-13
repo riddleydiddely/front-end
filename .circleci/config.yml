@@ -26,7 +26,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Managed deployed puls frontend.
+          name: Managed deployed Riddle front-end.
           command: |
             # This step will send request our "API" and fail if there is
             echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV
@@ -54,7 +54,7 @@ jobs:
           # The $GOOGLE_REGION is different from $GOOGLE_COMPUTE_ZONE. 
           # For example $GOOGLE_REGION=europe-west1 while $GOOGLE_COMPUTE_ZONE=eu-west-1 
           region: ${GOOGLE_REGION}
-          service-name: puls-frontend
+          service-name: riddle-front-end
           unauthenticated: true
 
 workflows:
