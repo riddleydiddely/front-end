@@ -27,7 +27,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false)
 
   return (
-      <div className={`fixed bg-main-green h-screen p-5 pt-5 ${open ? "w-72" : "w-20"} relative duration-300`}>
+      <div className={`fixed z-10 bg-main-green h-screen p-5 pt-5 ${open ? "w-72" : "w-20"} duration-300`}>
 
         {/* Expand arrow */}
         <BsArrowLeftShort className={`text-4xl bg-white text-black rounded-full absolute -right-5 top-100 border border-main-green ${!open && "rotate-180"} mr`} onClick={() => setOpen(!open)}></BsArrowLeftShort>
@@ -51,14 +51,12 @@ export default function Sidebar() {
         {/* Menu items */}
         <ul className="pt-2">
           {MenuItems.map((item, index) => (
-            <>
               <li key={index} className={`text-green-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-secondary-green rounded-md mt-2 ${item.spacing ? "mt-9" : "mt-2"}`}>
                 <Link href={`/${item.route}`} className="text-2xl text-white block float-left">
                   {item.icon ? item.icon : <RiDashboardFill />}
                 </Link>
                 <Link href={`/${item.route}`} className={`text-white text-base font-medium flex-1 ${!open && "hidden"}`}>{item.title}</Link>
               </li>
-            </>
           ))}
         </ul>
       </div>

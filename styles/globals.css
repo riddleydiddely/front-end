@@ -6,7 +6,28 @@
 :root {
   --main-color: rgb(0, 115, 92);
   --highlight-main-color: rgb(0, 148, 119);
-  --tetriary-color: rgb(158, 158, 158);
+  --tetriary-color: rgba(235,235,235,1)
+}
+
+.sidebar {
+  z-index: 1;
+  position: relative;
+  position: fixed;
+  transition-duration: 300ms;
+  --tw-bg-opacity: 1;
+  background-color: var(--main-color);
+  height: 100%;
+  padding: 1.25rem;
+  padding-top: 1.25rem/* 20px */;
+  color: white;
+}
+
+.main-content {
+  background-color: var(--tetriary-color);
+  /* overflow-x: hidden; */
+  padding-left: 5rem;
+  height: auto;
+  overflow-y: scroll;
 }
 
 .modal {

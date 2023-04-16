@@ -14,9 +14,9 @@ export const Layout = (props: LayoutProps) => {
     return (
     <div className="flex" >
         <Sidebar />
-        <div>
+        <div className="main-content">
             <Header title={props.title} subtitle="" />
-            <div className="bg-off-white p-12 w-screen h-screen">
+            <div className="p-5 w-screen h-screen">
                 {props.children}
             </div>
         </div>
