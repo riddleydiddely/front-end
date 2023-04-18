@@ -8,8 +8,9 @@ import { MdAttachMoney } from "react-icons/md";
 import { GoSettings } from "react-icons/go";
 import { VscAccount } from "react-icons/vsc";
 import { HiOutlineInformationCircle } from "react-icons/hi";
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
+import React from "react";
 
 const MenuItems = [
   

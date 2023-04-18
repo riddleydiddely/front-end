@@ -12,28 +12,28 @@ export const fortnoxProvider: OAuthConfig<fortnoxProfile> =
   name: "Fortnox",
   type: "oauth",
   version: "2",
-  clientId: "**",
-  clientSecret: "**=",
+  clientId: process.env.FORTNOX_CLIENT_ID,
+  clientSecret: process.env.FORTNOX_CLIENT_SECRET,
+  accessTokenUrl: 'https://apps.fortnox.se/oauth-v1/token',
+  requestTokenUrl: 'https://apps.fortnox.se/oauth-v1/token',
   authorization: {
     url: "https://apps.fortnox.se/oauth-v1/auth",
     params: {
       scope: "bookkeeping salary",
-      client_id: "**",
-      redirect_uri: "http://localhost:3000/",
+      redirect_uri: "http://localhost:3000/api/hello",
       access_type: "offline",
       response_type: "code",
       account_type: "service",
     }
   },
-  token: {
-    params: {
-      client_id: "**",
-      scope: "bookkeeping",
-      access_type: "offline",
-      response_type: "code",
-      account_type: "service",
-    }
-  },
+  // token: {
+  //   params: {
+  //     scope: "bookkeeping",
+  //     access_type: "offline",
+  //     response_type: "code",
+  //     account_type: "service",
+  //   }
+  // },
   idToken: true,
   checks: ['pkce', 'state'],
   profile(profile: fortnoxProfile, tokens: TokenSet) {

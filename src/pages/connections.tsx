@@ -6,7 +6,7 @@ import { Layout } from "../components/layout";
 import { Systems } from '../mockData/IntegrationMockData';
 
 export default function Connections() {
-  const { data: session, status } = useSession({required:true})
+  const { data: session, status } = useSession()
   return   <div className="grid gap-x-8 gap-y-4
     sm:grid-cols-1
     md:grid-cols-2

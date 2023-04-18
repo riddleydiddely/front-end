@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/react';
 
 const AccountNumber = () => {
-  const { data: session, status } = useSession({required:true})
+  const { data: session, status } = useSession()
   const router = useRouter()
   const { accountNumber } = router.query
 
