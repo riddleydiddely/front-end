@@ -1,36 +1,31 @@
 import React, { useState } from 'react';
-import Modal from '../../components/modal';
-import IErpSystems from "../../mockData/IntegrationMockData";
-import IntegrationForm from './IntegrationForm';
+import Integration from "../../mockData/IntegrationMockData";
 
-import { useSession, signIn, signOut } from "next-auth/react"
 
-export function IntegrationCard(item: IErpSystems, index:number) {
-    const [showModal, setShowModal] = useState(false)
-    
+export function IntegrationCard(item: Integration, index: number, addedFortnox: boolean) {
+
     return (
-        <div key={index} className={`py-5 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ${item.available && "hover:border-black"} hover:shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700`}>
-            <div>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {item.name}
-                </h5>
-                <img className='py-8 h-50' src={item.image_source} alt="" />
-                <p>{item.description}</p>
-                <p className="pt-10 font-normal text-gray-700 dark:text-gray-400">
-                    {item.available}
-                </p>
-                <div className='align-bottom'>
-                    <button  className={`${item.available ? "button-main" : "button-unavailable"}`} onClick={() => signIn()}>
-                        {item.available ? "Add" : "Coming soon"}
-                        {/* </a> */}
-                    </button>
+        <div key={index} className="card w-auto h-[30rem] bg-base-100 shadow-xl hover:shadow-xl border">
+
+            <figure className="px-10 pt-10 h-3/4"><img className='py-8 h-50' src={`/${item.image_source}`} alt={item.name} /></figure>
+            <div className="card-body">
+                <div className='flex-col'>
+
+                <h2 className="card-title">{item.name}</h2>
+                <p className='align-bottom align-text-bottom'>{item.description}</p>
+                </div>
+                <div className={`card-actions justify-center`}>
+                    <a href={item.url}>
+                        {
+                            addedFortnox && item.name === "Fortnox" ?
+                                (<button className={`btn btn-error `}>Remove</button>) :
+                                (<button className={`btn ${item.url ? "btn-wide" : "btn-wide btn-disabled"} `}>{item.url ? "Add" : "Coming soon"}</button>)
+                        }
+                    </a>
                 </div>
             </div>
-            <Modal isVisible={showModal} closeModal={setShowModal} >
-                <IntegrationForm img_url={item.image_source} ></IntegrationForm>
-            </Modal>
         </div>
-    );
+    )
 }
 
 export default IntegrationCard;

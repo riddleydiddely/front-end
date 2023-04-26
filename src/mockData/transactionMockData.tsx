@@ -28,43 +28,55 @@ export const transactionItems: TransactionData[] = [
         currency:"$"
     },
     {
-        transaction_id: "TR4S-F73J",
-        date: new Date("2023-03-01"),
-        status: "unreconciled",
-        source_image_url: "mynt.png",
-        source_name: "Mynt",
-        source_transaction_type: "Card",
-        items: ["Lunch at Brödernas"],
-        price:532,
-        reconciled_amount:90,
-        currency:"SEK"
-    },
-
-    {
-        transaction_id: "F84K-G881",
-        date: new Date("2023-03-03"),
+        transaction_id: "HG88-23FS",
+        date: new Date("2023-03-02"),
         status: "reconciled",
-        source_image_url: "paypal.png",
-        source_name: "PayPal",
-        source_transaction_type: "Bank transaction",
-        items: ["Mugs", "Plates"],
-        price:900,
-        reconciled_amount:900,
+        source_image_url: "klarna.png",
+        source_name: "Klarna",
+        source_transaction_type: "Card",
+        items: ["Denim Jacket XL"],
+        price:363,
+        reconciled_amount:350,
         currency:"$"
     },
+    // {
+    //     transaction_id: "TR4S-F73J",
+    //     date: new Date("2023-03-01"),
+    //     status: "unreconciled",
+    //     source_image_url: "mynt.png",
+    //     source_name: "Mynt",
+    //     source_transaction_type: "Card",
+    //     items: ["Rebook Shoes M"],
+    //     price:532,
+    //     reconciled_amount:90,
+    //     currency:"$"
+    // },
 
-    {
-        transaction_id: "DG87-23NM",
-        date: new Date("2023-03-03"),
-        status: "reconciled",
-        source_image_url: "stripe.png",
-        source_name: "Stripe",
-        source_transaction_type: "Card",
-        items: ["A book"],
-        price:120,
-        reconciled_amount:120,
-        currency:"€"
-    },
+    // {
+    //     transaction_id: "F84K-G881",
+    //     date: new Date("2023-03-03"),
+    //     status: "reconciled",
+    //     source_image_url: "paypal.png",
+    //     source_name: "PayPal",
+    //     source_transaction_type: "Bank transaction",
+    //     items: ["T shirt L"],
+    //     price:900,
+    //     reconciled_amount:900,
+    //     currency:"$"
+    // },
+
+    // {
+    //     transaction_id: "DG87-23NM",
+    //     date: new Date("2023-03-03"),
+    //     status: "reconciled",
+    //     source_image_url: "stripe.png",
+    //     source_name: "Stripe",
+    //     source_transaction_type: "Card",
+    //     items: ["Adidas Sneaker"],
+    //     price:120,
+    //     reconciled_amount:120,
+    //     currency:"$"
+    // },
 
 
     {
@@ -92,7 +104,7 @@ export const transactionItems: TransactionData[] = [
         items: ["Adidas Jacket M"],
         price:231,
         reconciled_amount:231,
-        currency:"€"
+        currency:"$"
     },
 
     {

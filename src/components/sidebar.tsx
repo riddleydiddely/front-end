@@ -18,7 +18,7 @@ const MenuItems = [
   { title: "Reconciliation", route: "reconciliation", icon: <TbArrowMerge /> },
   { title: "Messages", route: "messages", icon: <TbMessages /> },
   { title: "Financing", route: "financing", icon: <MdAttachMoney /> },
-  { title: "Connections", route: "connections", spacing: "true", icon: <AiOutlineApi /> },
+  { title: "Integrations", route: "integrations", spacing: "true", icon: <AiOutlineApi /> },
   { title: "Settings", route: "settings", icon: <GoSettings /> },
   { title: "Account", route: "account", icon: <VscAccount /> },
   { title: "About", route: "about", icon: <HiOutlineInformationCircle /> },

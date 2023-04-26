@@ -45,4 +45,40 @@ export const SuggestionsData: Suggestions[] = [
         currency: "€",
         time: new Date("2023-03-01"),
     }
+    ,
+    {
+        match_score: "48%",
+        transaction_id: "9Y7-48Q",
+        price: 854,
+        source: "Klarna",
+        currency: "€",
+        time: new Date("2023-03-01"),
+    }
+    ,
+    {
+        match_score: "48%",
+        transaction_id: "9Y7-48Q",
+        price: 854,
+        source: "Klarna",
+        currency: "€",
+        time: new Date("2023-03-01"),
+    }
+    ,
+    {
+        match_score: "48%",
+        transaction_id: "9Y7-48Q",
+        price: 854,
+        source: "Klarna",
+        currency: "€",
+        time: new Date("2023-03-01"),
+    }
+    ,
+    {
+        match_score: "48%",
+        transaction_id: "9Y7-48Q",
+        price: 854,
+        source: "Klarna",
+        currency: "€",
+        time: new Date("2023-03-01"),
+    }
 ]
