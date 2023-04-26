@@ -3,7 +3,6 @@ import { PropsWithChildren } from 'react'
 import { FiMenu } from "react-icons/fi";
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { Session } from "next-auth";
 

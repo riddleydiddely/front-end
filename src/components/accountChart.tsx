@@ -7,34 +7,60 @@ import { ApexOptions } from 'apexcharts';
 import { PropsWithChildren } from 'react'
 
 export type IChartProps = {
-    dataSeries: ApexOptions['series']
+    dataSeries: ApexOptions['series'],
+    type?: any,
+    numberOfPredictions: number
 }
 
-const options: Props = {
-    chart: {
-        height: 350,
-        type: 'area'
-    },
-    dataLabels: {
-        enabled: false
-    },
-    stroke: {
-        curve: 'smooth'
-    },
-    xaxis: {
-        type: 'date',
-        categories: ["2018-09-19", "2018-09-20", "2018-09-21", "2018-09-22", "2018-09-23", "2018-09-24", "2018-09-25"]
-    },
-    tooltip: {
-        x: {
-            format: "yyyy-dd-mm"
-        },
-    },
-}
+
 
 export const AccountChart = (props: PropsWithChildren<IChartProps>) => {
+
+    let options: Props = {
+        forecastDataPoints: {
+            count: props.numberOfPredictions,
+            fillOpacity: 0.99,
+            strokeWidth: 3,
+            dashArray: 3,
+        },
+        chart: {
+            yaxis: {
+                min: 0,
+                max: 100
+            },
+            height: 350,
+            type: 'line',
+            toolbar: {
+                show: false
+            },
+        },
+        colors: ['rgb(240,0,184)', '#546E7A', '#E91E63', '#FF9800'],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        xaxis: {
+            type: 'date',
+            categories: ["2023-04-19", "2023-04-20", "2023-04-21", "2023-04-22", "2023-04-23", "2023-04-24", "2023-04-25"]
+        },
+
+        tooltip: {
+            x: {
+                format: "yyyy-dd-mm"
+            },
+        },
+    }
+
+    console.log("============== options ================")
+    console.log(options)
+    console.log("============== numberOfPredictions ================")
+    props.numberOfPredictions
+
     return <div id="chart">
-        <ReactApexChart options={options} series={props.dataSeries} type="area" height={350} />
+        <ReactApexChart options={options} series={props.dataSeries} type={props.type} height={350} />
     </div>
         ;
 };
