@@ -37,7 +37,7 @@ const columns: string[] = [
   "Amount",
   "Status",
   "PSP",
-  "Items",
+  "Reasons",
   "Actions",
 ]
 

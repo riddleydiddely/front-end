@@ -5,6 +5,7 @@ import { Fragment, ReactNode, useState } from 'react';
 import { ApexOptions } from 'apexcharts';
 import { IDashboard, MockFeesData, statsFees, totalFees } from '../../mockData/mockDashboardData/MockFeesData';
 import { StatsData } from '@/components/types/StatsData';
+import { MockReconciliationData, statsReconciliation, totalReconciliation } from '../../mockData/mockDashboardData/MockReconciliationData';
 
 
 function getStats(data: StatsData[]): ReactNode {
@@ -48,7 +49,7 @@ function getDashboardGrid(gridDashboardData: IDashboard[]): ReactNode {
                         <div className="card-body">
                             <Link href={dashboard.url}> <h2 className="card-title">{dashboard.title}</h2></Link>
                             <p>{dashboard.subtitle}</p>
-                            <AccountChart dataSeries={dashboard.data} numberOfPredictions={2} ></AccountChart>
+                            <AccountChart dataSeries={dashboard.data} numberOfPredictions={0} ></AccountChart>
                         </div>
                     </div>
             )}
@@ -66,9 +67,10 @@ function getRevenueDashboard(gridDashboardData: IDashboard[], mainDashboardData:
 }
 
 function getDashboards(currentTab: string) {
+
     switch (currentTab) {
         case 'insights':
-            return getRevenueDashboard(MockRevenueData, totalReceivables, statsRevenue, 2, "Reconciliation rate");
+            return getRevenueDashboard(MockReconciliationData, totalReconciliation, statsReconciliation, 0, "Reconciliation rate");
         case 'settlements':
             return getRevenueDashboard(MockFeesData, totalFees, statsFees, 2, "Total fees");
         default:
