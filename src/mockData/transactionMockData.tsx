@@ -22,7 +22,7 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "Card",
-        items: ["Black Levis Jeans L", "Denim Jacket XL"],
+        items: [],
         price:1234,
         reconciled_amount:1234,
         currency:"$"
@@ -34,7 +34,7 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "Card",
-        items: ["Denim Jacket XL"],
+        items: ["FX rate", "Possible Chargeback"],
         price:363,
         reconciled_amount:350,
         currency:"$"
@@ -86,7 +86,7 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "BNPL",
-        items: ["Converse All Stars M"],
+        items: [],
         price:900,
         reconciled_amount:900,
         currency:"$"
@@ -101,7 +101,7 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "BNPL",
-        items: ["Adidas Jacket M"],
+        items: [],
         price:231,
         reconciled_amount:231,
         currency:"$"
@@ -114,7 +114,7 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "BNPL",
-        items: ["Nike jumper M"],
+        items: [],
         price:760,
         reconciled_amount:760,
         currency:"$"
