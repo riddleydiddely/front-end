@@ -124,6 +124,6 @@ export const statsRevenue: StatsData[] = [
 export const MockRevenueData: IDashboard[] = [
   { title: "Revenue per country", subtitle: "aggregated per day", data: countryRevenue, options: options, url: "/account/3000" },
   { title: "Revenue per PSP", subtitle: "aggregated per day", data: pspRevenue, options: options, url: "/account/3000" },
-  { title: "Revenue per OMS", subtitle: "aggregated per day", data: omsRevenue, options: options, url: "/account/3000" },
+  { title: "Revenue per e-commerce backend system", subtitle: "aggregated per day", data: omsRevenue, options: options, url: "/account/3000" },
   { title: "Revenue per currency", subtitle: "aggregated per day", data: currencyRevenue, options: options, url: "/account/3000" }
 ]

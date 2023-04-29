@@ -1,20 +1,26 @@
+import { Customer } from "@/components/types/Customer";
+import { PurchaseInfo } from "@/components/types/PurchaseInfo";
 
 const NOW = new Date(Date.now());
 
-export interface TransactionData {
+export interface Transaction {
     transaction_id: string,
     date: Date,
     status: string,
     source_image_url: string,
     source_name: string,
     source_transaction_type: string,
-    items: string[],
-    price:number,
+    reasons: string[],
+    amount:number,
     reconciled_amount:number,
-    currency:string
+    currency:string,
+    tax: number,
+    customer: Customer,
+    oms: string,
+    psp: string,
 }
 
-export const transactionItems: TransactionData[] = [
+export const transactionItems: Transaction[] = [
     {
         transaction_id: "DG8S-23FS",
         date: new Date("2023-03-02"),
@@ -22,10 +28,18 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "Card",
-        items: [],
-        price:1234,
+        reasons: [],
+        amount:1234,
         reconciled_amount:1234,
-        currency:"$"
+        currency:"$",
+        tax: 12,
+        customer: {
+            name: "Jonas Sjösted",
+            shipping_address: "Andra Långgatan 2, Göteborg",
+            email: "marko@gmail.com"
+        },
+        oms: "Shopify",
+        psp: "Klarna"
     },
     {
         transaction_id: "HG88-23FS",
@@ -34,10 +48,38 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "Card",
-        items: ["FX rate", "Possible Chargeback"],
-        price:363,
+        reasons: ["FX-rate", "Chargeback",],
+        amount:363,
         reconciled_amount:350,
-        currency:"$"
+        currency:"$",
+        tax: 3,
+        customer: {
+            name: "Marko Lehtosalo ",
+            shipping_address: "Östermlamsgatan 3, Stockholm",
+            email: "markoolio@gmail.com"
+        },
+        oms: "Shopify",
+        psp: "Klarna"
+    },
+    {
+        transaction_id: "J8PR-23FS",
+        date: new Date("2023-03-02"),
+        status: "reconciled",
+        source_image_url: "klarna.png",
+        source_name: "Klarna",
+        source_transaction_type: "Card",
+        reasons: ["FX-rate",],
+        amount:10,
+        reconciled_amount:9,
+        currency:"$",
+        tax: 1,
+        customer: {
+            name: "Jesus Morales",
+            shipping_address: "Wollmar Yxkullsgatan 48C, Stockholm",
+            email: "jesus@gmail.com"
+        },
+        oms: "Shopify",
+        psp: "Klarna"
     },
     // {
     //     transaction_id: "TR4S-F73J",
@@ -86,14 +128,19 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "BNPL",
-        items: [],
-        price:900,
+        reasons: [],
+        amount:900,
         reconciled_amount:900,
-        currency:"$"
+        currency:"$",
+        tax: 9,
+        customer: {
+            name: "Tony Andersson ",
+            shipping_address: "Wollmar Yxkullsgatan 50A, Stockholm",
+            email: "tonybony@gmail.com"
+        },
+        oms: "Shopify",
+        psp: "Klarna"
     },
-
-
-
     {
         transaction_id: "325L-456O",
         date: new Date("2023-03-02"),
@@ -101,12 +148,19 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "BNPL",
-        items: [],
-        price:231,
+        reasons: [],
+        amount:231,
         reconciled_amount:231,
-        currency:"$"
+        currency:"$",
+        tax: 2.3,
+        customer: {
+            name: "King Kong",
+            shipping_address: "Hawaii",
+            email: "king@gmail.com"
+        },
+        oms: "Shopify",
+        psp: "Klarna"
     },
-
     {
         transaction_id: "QMM5-456O",
         date: new Date("2023-03-02"),
@@ -114,9 +168,17 @@ export const transactionItems: TransactionData[] = [
         source_image_url: "klarna.png",
         source_name: "Klarna",
         source_transaction_type: "BNPL",
-        items: [],
-        price:760,
+        reasons: [],
+        amount:760,
         reconciled_amount:760,
-        currency:"$"
+        currency:"$",
+        tax: 3,
+        customer: {
+            name: "Antonio Andersson",
+            shipping_address: "Mästersamuelssgatan 3, Stockholm",
+            email: "antonio@gmail.com"
+        },
+        oms: "Shopify",
+        psp: "Klarna"
     },
 ]

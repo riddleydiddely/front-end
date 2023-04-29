@@ -1,4 +1,4 @@
-import { TransactionData } from '../mockData/transactionMockData'
+import { Transaction } from '../mockData/transactionMockData'
 import { useState } from 'react';
 import Suggestions from './suggestions';
 import Pagination from './table/pagination';
@@ -38,16 +38,16 @@ const columns: string[] = [
   "Status",
   "PSP",
   "Reasons",
-  "Actions",
+  // "Actions",
 ]
 
-function getReconciliationTable(setShowModal: Function, transactionItems: TransactionData[]) {
+function getReconciliationTable(setShowModal: Function, transactionItems: Transaction[]) {
   return (
     <div className="overflow-x-auto w-full shadow-2xl bg-transparent rounded-lg outline outline-1 outline-slate-100 my-10 max-h-screen">
-      <table className="table w-full bg-transparent ">
+      <table className="table w-full bg-transparent  ">
         <Header columns={columns}></Header>
         <tbody>
-          {transactionItems.map((transaction: TransactionData, key:number) => (
+          {transactionItems.map((transaction: Transaction, key:number) => (
             <TransactionRow key={key} transaction={transaction} showModal={setShowModal}></TransactionRow>
           ))}
         </tbody>
@@ -56,7 +56,7 @@ function getReconciliationTable(setShowModal: Function, transactionItems: Transa
   )
 }
 
-export default function TransactionsTable(transactionItems: TransactionData[]) {
+export default function TransactionsTable(transactionItems: Transaction[]) {
   const [showModal, setShowModal] = useState(false)
 
   return (

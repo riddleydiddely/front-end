@@ -94,7 +94,7 @@ import { StatsData } from '@/components/types/StatsData';
  export const totalReconciliation: ApexOptions['series'] = [
   {
     name: 'Reconciliation',
-    data: [100, 100, 100, 100, 99, 88, 85]
+    data: [100, 100, 100, 100, 99, 98, 99]
   },
 ]
 
@@ -124,6 +124,6 @@ export const statsReconciliation: StatsData[] = [
 export const MockReconciliationData: IDashboard[] = [
   { title: "Reconciliation per country", subtitle: "aggregated per day", data: countryReconciliation, options: options, url: "/account/3000" },
   { title: "Reconciliation per PSP", subtitle: "aggregated per day", data: pspReconciliation, options: options, url: "/account/3000" },
-  { title: "Reconciliation per OMS", subtitle: "aggregated per day", data: omsReconciliation, options: options, url: "/account/3000" },
+  { title: "Reconciliation per e-commerce backend system", subtitle: "aggregated per day", data: omsReconciliation, options: options, url: "/account/3000" },
   { title: "Reconciliation per currency", subtitle: "aggregated per day", data: currencyReconciliation, options: options, url: "/account/3000" }
 ]

@@ -18,7 +18,7 @@ function getContent(currentTab: string) {
 const Settlements = () => {
 
   const router = useRouter()
-  const [currentTab, setCurrentTab] = useState("settlements")
+  const [currentTab, setCurrentTab] = useState("insights")
   const tabs = [
     { id: "insights", button_name: "insights" },
     { id: "settlements", button_name: "settlements" }

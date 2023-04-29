@@ -1,11 +1,14 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import React from 'react'
 import { ParsedUrlQuery } from 'querystring';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Tabs from '../../components/common/tabs';
 import { Tab } from '../../components/common/tabs';
 import IntegrationCard from '../../components/integration/IntegrationCard';
 import { AccountingSystems, PaymentServiceProvidors, OrderManagementSystems } from '../../mockData/IntegrationMockData';
+import { GetServerSideProps } from 'next';
+import { GetStaticPaths } from 'next'
 
 const gridStyling = "grid gap-x-6 gap-y-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
 
@@ -25,7 +28,7 @@ function getContent(currentTab: string) {
     return <div></div>
   } else if (currentTab === "accountingsystems") {
     return <div className={gridStyling}>
-      {AccountingSystems.map((system, index) => (IntegrationCard(system, index, Boolean(false))))}
+      {AccountingSystems.map((system, index) => (IntegrationCard(system, index, Boolean(true))))}
 
     </div>
   }
@@ -37,10 +40,11 @@ const tabs: Tab[] = [
   { id: "oms", button_name: "OMS" },
   { id: "banks", button_name: "Banks", disabled: true },
 ]
-export default function Integrations() {
-  const { data: session, status } = useSession()
+function Integrations() {
+
   const router = useRouter()
-  const { keyword } = router.query
+
+
   const [currentTab, setCurrentTab] = useState("accountingsystems")
 
 
@@ -51,6 +55,7 @@ export default function Integrations() {
     tabs: tabs
   }
 
+
   return (
     <div>
       {Tabs(tabSettings)}
@@ -58,3 +63,7 @@ export default function Integrations() {
     </div>
   )
 }
+
+export default Integrations;
+
+

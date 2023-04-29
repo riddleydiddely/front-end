@@ -26,7 +26,6 @@ export default function InfoCard(props: InfoCardProps) {
       <div className="rounded-lg  shadow-sm ring-1 ring-gray-900/5">
         <dl className="flex flex-wrap">
           <div className="flex-auto pl-6 pt-6">
-
             <img className='object-cover w-14' src={props.infoCard?.psp_image_url} alt="" />
           </div>
 
@@ -37,13 +36,9 @@ export default function InfoCard(props: InfoCardProps) {
             </dd>
           </div>
 
-
-
           <div className="mt-6 flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-6">
             <dt className="flex-none">
               <span className="sr-only">Client</span>
-              {/* <UserCircleIcon className="h-6 w-5 text-gray-400" aria-hidden="true" /> */}
-
               <img src={props.infoCard?.responsible_people.img_url} alt="" className='mx-auto h-8 w-8 flex-shrink-0 rounded-full' />
             </dt>
             <dd className="text-sm font-medium leading-6 text-gray-900">{props.infoCard?.responsible_people.name}</dd>
