@@ -26,39 +26,19 @@ export const authOptions = {
   callbacks: {
     async session({ session, token, user }: { session: Session, token: JWT, user: User }): Promise<Session> {
 
-      console.log("========== SESSION ==========")
-      console.log("This is the session: " + JSON. stringify(session))
-      console.log("This is the token: " + JSON. stringify(token))
-      console.log("This is the user: " + JSON. stringify(user))
       return session;
     },
-    
-    //  async jwt({ token, account, profile }) {
-    async jwt({ token, user }: { token: JWT; user?: User }): Promise<JWT> {
-      // Persist the OAuth access_token and or the user id to the token right after signin
-      //if (account) {
-      //token.accessToken = account.access_token
-      //token.id = profile.id
-      console.log("========== JWT ==========")
-      console.log("This is the JWT: " + JSON. stringify(token))
-      console.log("This is the idToken in the JWT: " + token.idToken)
-      console.log("This is the name in the JWT: " + token.name)
-      console.log("This is the email in the JWT: " + token.email)
-      console.log("This is the sub in the JWT: " + token.sub)
-      console.log("This is the user: " + JSON. stringify(user))
 
-      //}
+    async jwt({ token, user }: { token: JWT; user?: User }): Promise<JWT> {
+
+
       return token
     },
-    // async signIn({ user, account, profile, email, credentials }: {user:User, account: Account, profile: Profile, email: string, credentials: string}) {
-    //   console.log("========== signIn ==========")
-    //   console.log("This is the user: " + JSON. stringify(user))
-    //   console.log("This is the account: " + JSON. stringify(account))
-    //   console.log("This is the profile: " + JSON. stringify(profile))
-    //   console.log("This is the email: " + email)
-    //   console.log("This is the credentials: " + credentials)
-    //   return true
-    // },
+    async signIn({ user }: { user: User }): Promise<boolean> {
+      const allowed_emails: string[] = ["donny.ho@getriddle.com", "kyle.rowley@getriddle.com", "dieu.donny.ho@gmail.com", "dhtechnologyconsulting@gmail.com"]
+
+      return allowed_emails.includes(user.email ?? '')
+    }
     //  async redirect({ url, baseUrl }) {
     //    // Allows relative callback URLs
     //    if (url.startsWith("/")) return `${baseUrl}/about`
