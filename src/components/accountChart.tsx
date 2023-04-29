@@ -54,10 +54,7 @@ export const AccountChart = (props: PropsWithChildren<IChartProps>) => {
         },
     }
 
-    console.log("============== options ================")
-    console.log(options)
-    console.log("============== numberOfPredictions ================")
-    props.numberOfPredictions
+
 
     return <div id="chart">
         <ReactApexChart options={options} series={props.dataSeries} type={props.type} height={350} />
