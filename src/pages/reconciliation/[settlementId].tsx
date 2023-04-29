@@ -3,7 +3,7 @@ import TransactionsTable from "../../components/transactionsTable";
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import InfoCard, { InfoCardProps } from '../../components/common/infoCard';
-import { TransactionData, transactionItems } from '../../mockData/transactionMockData'
+import { Transaction, transactionItems } from '../../mockData/transactionMockData'
 
 const infoCard: InfoCardProps = {
   infoCard: {
@@ -25,7 +25,7 @@ function getTabs(currentTab: string, setCurrentTab: Function) {
   )
 }
 
-function getContent(currentTab: string, transactionItems: TransactionData[]) {
+function getContent(currentTab: string, transactionItems: Transaction[]) {
 
   if (currentTab === "overview") {
     return <div>
@@ -33,9 +33,9 @@ function getContent(currentTab: string, transactionItems: TransactionData[]) {
       {TransactionsTable(transactionItems)}
     </div>
   } else if (currentTab === "unreconciled_transactions") {
-    return TransactionsTable(transactionItems.filter((t: TransactionData) => t.price != t.reconciled_amount))
+    return TransactionsTable(transactionItems.filter((t: Transaction) => t.amount != t.reconciled_amount))
   } else if (currentTab === "reconciled_transactions") {
-    return TransactionsTable(transactionItems.filter((t: TransactionData) => t.price === t.reconciled_amount))
+    return TransactionsTable(transactionItems.filter((t: Transaction) => t.amount === t.reconciled_amount))
   }
 }
 
@@ -47,7 +47,6 @@ function getInfoCard(infoCard: InfoCardProps) {
   lg:grid-cols-2
   xl:grid-cols-2'>
     {InfoCard(infoCard)}
-
   </div>
 }
 

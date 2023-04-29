@@ -62,7 +62,7 @@ function getCheckmark(paid: boolean): ReactNode {
 function getReconciliationElement(price: number, reconciled_amount: number) {
   if (price === reconciled_amount) {
     return <div className="">
-      <h2 className="text-sm font-normal px-3 py-1 rounded-full text-white text-center bg-emerald-100/60 bg-primary">Reconciled</h2>
+      <h2 className="text-sm font-normal px-3 py-1 rounded-full text-green-700  ">Reconciled</h2>
     </div>
   }
   else if (price > reconciled_amount) {

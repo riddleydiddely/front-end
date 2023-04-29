@@ -11,21 +11,44 @@ export function IntegrationCard(item: Integration, index: number, addedFortnox: 
             <div className="card-body">
                 <div className='flex-col'>
 
-                <h2 className="card-title">{item.name}</h2>
-                <p className='align-bottom align-text-bottom'>{item.description}</p>
+                    <h2 className="card-title">{item.name}</h2>
+                    <p className='align-bottom align-text-bottom'>{item.description}</p>
                 </div>
                 <div className={`card-actions justify-center`}>
                     <a href={item.url}>
                         {
-                            addedFortnox && item.name === "Fortnox" ?
-                                (<button className={`btn btn-error `}>Remove</button>) :
-                                (<button className={`btn ${item.url ? "btn-wide" : "btn-wide btn-disabled"} `}>{item.url ? "Add" : "Coming soon"}</button>)
+                             getButton(item.name, item.status, addedFortnox)
                         }
                     </a>
                 </div>
             </div>
         </div>
     )
+}
+
+function getButton(name: string, status: "Added" | "NotAdded" | "ComingSoon", addedFortnox: boolean) {
+
+    if(addedFortnox){
+        if (name === "Fortnox") {
+            return (<button className={`btn btn-error btn-wide `}>Remove</button>)
+        }else{
+          return getNormalButtong(status)
+        }
+    } else{
+        return getNormalButtong(status)
+    }
+}
+
+function getNormalButtong(status: "Added" | "NotAdded" | "ComingSoon") {
+    if (status === "Added") {
+        return (<button className={`btn btn-error btn-wide `}>Remove integration</button>)
+    }
+    if (status === "NotAdded") {
+        return (<button className={`btn  btn-wide `}>Add Integrate</button>)
+    }
+    else  {
+        return (<button className={`btn btn-wide btn-disabled`}>ComingSoon</button>)
+    }
 }
 
 export default IntegrationCard;

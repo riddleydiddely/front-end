@@ -133,6 +133,6 @@ export const statsFees: StatsData[] = [
 export const MockFeesData: IDashboard[] = [
   { title: "Fee per country", subtitle: "aggregated per day", data: countryFees, options: options, url: "/account/3000" },
   { title: "Fee per PSP", subtitle: "aggregated per day", data: pspFees, options: options, url: "/account/3000" },
-  { title: "Fee per OMS", subtitle: "aggregated per day", data: omsFees, options: options, url: "/account/3000" },
+  { title: "Fee per e-commerce backend system", subtitle: "aggregated per day", data: omsFees, options: options, url: "/account/3000" },
   { title: "Fee per currency", subtitle: "aggregated per day", data: currencyFees, options: options, url: "/account/3000" }
 ]

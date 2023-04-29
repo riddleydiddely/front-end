@@ -18,7 +18,7 @@ export const settlements: Settlement[] = [
     {
         id: "DG8S-23FS",
         amount: 1234,
-        date: dateNow,
+        date: new Date("2023-04-02"),
         number_of_orders: 2436,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",
@@ -29,7 +29,7 @@ export const settlements: Settlement[] = [
     {
         id: "AS3M-H34J",
         amount: 4545,
-        date: dateNow,
+        date: new Date("2023-04-03"),
         number_of_orders: 5484,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",
@@ -40,7 +40,7 @@ export const settlements: Settlement[] = [
     {
         id: "DFF9-845FF",
         amount: 8564,
-        date: dateNow,
+        date: new Date("2023-04-04"),
         number_of_orders: 5623,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",
@@ -51,7 +51,7 @@ export const settlements: Settlement[] = [
     {
         id: "F4G4-F3YG",
         amount: 5474,
-        date: dateNow,
+        date: new Date("2023-04-05"),
         number_of_orders: 7435,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",
@@ -62,7 +62,7 @@ export const settlements: Settlement[] = [
     {
         id: "GL4K-F456",
         amount: 5643,
-        date: dateNow,
+        date: new Date("2023-04-06"),
         number_of_orders: 2344,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",
@@ -73,7 +73,7 @@ export const settlements: Settlement[] = [
     {
         id: "G854-34GD",
         amount: 4536,
-        date: dateNow,
+        date: new Date("2023-04-07"),
         number_of_orders: 2655,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",
@@ -84,7 +84,7 @@ export const settlements: Settlement[] = [
     {
         id: "4FER-22FF",
         amount: 7342,
-        date: dateThen,
+        date: new Date("2023-04-08"),
         number_of_orders: 3462,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",
@@ -95,7 +95,7 @@ export const settlements: Settlement[] = [
     {
         id: "FST5-B555",
         amount: 1343,
-        date: dateThen,
+        date: new Date("2023-04-09"),
         number_of_orders: 7324,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",
@@ -106,7 +106,7 @@ export const settlements: Settlement[] = [
     {
         id: "SH55-345D",
         amount: 5233,
-        date: dateThen,
+        date: new Date("2023-04-10"),
         number_of_orders: 2352,
         psp_image_url: "klarna.png",
         psp_name: "Klarna",

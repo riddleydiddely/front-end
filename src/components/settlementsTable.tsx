@@ -1,4 +1,4 @@
-import { TransactionData, transactionItems } from '../mockData/transactionMockData'
+import { Transaction, transactionItems } from '../mockData/transactionMockData'
 import { Fragment, useState } from 'react';
 import Modal from './modal';
 import Suggestions from './suggestions';
@@ -29,7 +29,7 @@ export default function SettlementsTable() {
     <Header columns={columns}></Header>
     <tbody>
       {
-        settlements.concat(settlements, settlements).map((settlement: Settlement, key:number) => (
+        settlements.map((settlement: Settlement, key:number) => (
           <SettlementRow key={key} settlement={settlement} showModal={setShowModal} />
         ))
       }
