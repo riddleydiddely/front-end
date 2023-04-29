@@ -25,8 +25,6 @@ declare module "next-auth" {
             id?: string;
         };
     }
-
-    
 }
 
 declare module "next-auth/jwt" {
