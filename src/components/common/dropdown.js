@@ -3,7 +3,8 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 
 const publishingOptions = [
-  { title: 'FX-rate', description: 'This transaction was paid out in another currency than it was booked in', current: true },
+  { title: 'FX-rate', description: 'Transaction paid out in another currency than it was booked in', current: true },
+  { title: 'FX-rate & Chargeback', description: 'Transaction paid out in another currency than it was booked in', current: true },
   { title: 'Chargeback', description: 'Chargeback detected', current: false },
   { title: 'Refund', description: 'There was a refund of $2 on this transaction', current: false },
   { title: 'Discount', description: 'A manual discount was issued', current: false },
@@ -27,7 +28,7 @@ export default function Dropdown() {
                 <CheckIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
                 <p className="text-sm font-semibold">{selected.title}</p>
               </div>
-              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md bg-slate-400 p-2 hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-gray-50">
+              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md bg-slate-400 p-2 hover:bg-slate-500  focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-gray-50">
                 <span className="sr-only">Change published status</span>
                 <ChevronDownIcon className="h-5 w-5 text-white" aria-hidden="true" />
               </Listbox.Button>

@@ -37,13 +37,13 @@ export default function SettlementRow(props: SettlementRowProps) {
           <div key={key} className='inline-flex border-gray-400 border m-1 px-2 py-1 rounded-full  bg-gray-200 hover:bg-gray-500 hover:text-white'>{item}</div>
         ))
       }</td> */}
-      <td className="px-4 py-4 text-sm whitespace-nowrap">
-        <div className="flex items-center gap-x-6 text-2xl">
+      <td className="px-4 py-4 whitespace-nowrap">
+        <div className="flex items-center gap-x-6">
           {/* <button className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
               Archive
             </button> */}
           {/* {getActionButton(props.settlement.amount, props.settlement.reconciled_amount, props.showModal)} */}
-          <Link href={`/reconciliation/${props.settlement.id}`}> <AiOutlineRightCircle></AiOutlineRightCircle></Link>
+          <Link href={`/reconciliation/${props.settlement.id}`}> See transactions</Link>
         </div>
       </td>
     </tr>
@@ -84,15 +84,3 @@ function getReconciliationElement(price: number, reconciled_amount: number) {
   }
 }
 
-function getActionButton(price: number, reconciled_amount: number, showModal: Function) {
-  if (price === reconciled_amount) {
-    return <button className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-    </button>
-  }
-  else {
-    return (
-      <label htmlFor="my-modal-4" className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">Manually Resolve</label>
-    )
-  }
-
-}
