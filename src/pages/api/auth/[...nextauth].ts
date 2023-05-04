@@ -37,7 +37,7 @@ export const authOptions = {
     async signIn({ user }: { user: User }): Promise<boolean> {
       const allowed_emails: string[] = ["donny.ho@getriddle.com", "kyle.rowley@getriddle.com", "dieu.donny.ho@gmail.com", "dhtechnologyconsulting@gmail.com"]
 
-      return allowed_emails.includes(user.email ?? '')
+      return allowed_emails.includes(user.email ?? '') || (user.email?.endsWith("@getriddle.com") ?? false)
     }
     //  async redirect({ url, baseUrl }) {
     //    // Allows relative callback URLs
