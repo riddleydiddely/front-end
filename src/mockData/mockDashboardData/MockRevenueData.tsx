@@ -3,6 +3,7 @@ import ApexAxisChartSeries from "react-apexcharts"
 import { Props } from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { StatsData } from '@/components/types/StatsData';
+import {generateRandomIntegers} from "@/components/src/utils/numberUtils.";
  const options: Props = {
   chart: {
     height: 350,
@@ -91,12 +92,14 @@ import { StatsData } from '@/components/types/StatsData';
   },
 ]
 
- export const totalReceivables: ApexOptions['series'] = [
-  {
-    name: 'Revenue',
-    data: [1901, 1904, 2001, 1901, 2501, 2601, 3400]
-  },
-]
+ export function totalReceivables(count: number): ApexOptions['series'] {
+    return [
+         {
+             name: 'Revenue',
+             data: generateRandomIntegers(1000, 1215, count)
+         },
+     ]
+ }
 
 export const statsRevenue: StatsData[] = [
   {

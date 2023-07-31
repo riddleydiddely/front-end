@@ -1,7 +1,7 @@
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid'
-import { CursorArrowRaysIcon, EnvelopeOpenIcon, UsersIcon } from '@heroicons/react/24/outline'
 import {SiShopify, SiAmazon} from "react-icons/si";
 import {AiOutlineDollar} from "react-icons/ai";
+import Link from "next/link";
 
 let options= {
     currency: "EUR",
@@ -27,7 +27,7 @@ function classNames(...classes:string[]) {
 export default function Revenue() {
     return (
         <div>
-            <dl className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <dl className="col-span-1 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-5">
                 {stats.map((item) => (
                     <div
                         key={item.id}
@@ -57,9 +57,9 @@ export default function Revenue() {
                             </p>
                             <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
                                 <div className="text-sm">
-                                    <a href="#" className="font-medium text-black hover:text-gray-500">
+                                    <Link href="/dashboards" className="font-medium text-black hover:text-gray-500">
                                         See details<span className="sr-only"> {item.name} stats</span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </dd>

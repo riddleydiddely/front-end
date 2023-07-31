@@ -1,11 +1,11 @@
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid'
 import { CursorArrowRaysIcon, EnvelopeOpenIcon, UsersIcon } from '@heroicons/react/24/outline'
 import {BsBank2} from "react-icons/bs";
-
+import {BiRun} from "react-icons/bi";
 const stats = [
     { id: 1, name: 'SEB', stat: '€71,897', icon: BsBank2, change: '3.2%', changeType: 'increase' },
     { id: 2, name: 'Revolut', stat: '€58.16', icon: BsBank2, change: '5.4%', changeType: 'increase' },
-    //{ id: 3, name: 'Avg. Click Rate', stat: '24.57%', icon: CursorArrowRaysIcon, change: '3.2%', changeType: 'decrease' },
+    { id: 3, name: 'Runway', stat: '14 months', icon: BiRun, change: '1 week', changeType: 'increase' },
 ]
 
 function classNames(...classes:string[]) {
@@ -16,7 +16,7 @@ export default function BankBalances() {
     return (
         <div>
 
-            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-2">
+            <dl className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
                 {stats.map((item) => (
                     <div
                         key={item.id}
