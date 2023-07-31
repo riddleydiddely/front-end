@@ -94,7 +94,7 @@ export const LayoutDaisy = (props: LayoutProps) => {
                     {renderLoginArea(session)}
                 </div>
             </div>
-            <div className="px-24 mb-10 w-screen h-screen">
+            <div className="px-24 pb-10 mb-10 w-screen ">
                 {props.children}
             </div>
         </Fragment>
