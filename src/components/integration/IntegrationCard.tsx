@@ -44,7 +44,7 @@ function getNormalButtong(status: "Added" | "NotAdded" | "ComingSoon") {
         return (<button className={`btn btn-error btn-wide `}>Remove integration</button>)
     }
     if (status === "NotAdded") {
-        return (<button className={`btn  btn-wide `}>Add Integrate</button>)
+        return (<button className={`btn  btn-wide `}>Add Integration</button>)
     }
     else  {
         return (<button className={`btn btn-wide btn-disabled`}>ComingSoon</button>)

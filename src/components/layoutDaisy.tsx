@@ -106,6 +106,7 @@ function getMenu(activeTab: string, setActiveTab:Function) {
         <Fragment>
             <li className={` mx-5  ${activeTab==="reconciliation" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("reconciliation")}><Link href={"/reconciliation/settlements"}>Reconciliation</Link></li>
             <li className={` mx-5  ${activeTab==="dashboards" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("dashboards")}><Link href={"/dashboards"}>Dashboards</Link></li>
+            <li className={` mx-5  ${activeTab==="home" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("home")}><Link href={"/home"}>Home</Link></li>
             <li className={` mx-5  ${activeTab==="integrations" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("integrations")}><Link href={"/integrations/adding"}>Integrations</Link></li>
         </Fragment>
     )
