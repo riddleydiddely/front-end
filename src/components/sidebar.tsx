@@ -5,7 +5,7 @@ import { TbArrowMerge, TbHexagonLetterR } from "react-icons/tb";
 import { RiDashboardFill } from "react-icons/ri";
 import { TbMessages } from "react-icons/tb";
 import { MdAttachMoney } from "react-icons/md";
-import { GoSettings } from "react-icons/go";
+
 import { VscAccount } from "react-icons/vsc";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { useState } from 'react';
@@ -13,13 +13,13 @@ import Link from 'next/link';
 import React from "react";
 
 const MenuItems = [
-  
+
   { title: "Dashboards", route: "dashboards", icon: <RiDashboardFill /> },
   { title: "Reconciliation", route: "reconciliation", icon: <TbArrowMerge /> },
   { title: "Messages", route: "messages", icon: <TbMessages /> },
   { title: "Financing", route: "financing", icon: <MdAttachMoney /> },
   { title: "Integrations", route: "integrations", spacing: "true", icon: <AiOutlineApi /> },
-  { title: "Settings", route: "settings", icon: <GoSettings /> },
+  { title: "Settings", route: "settings", icon: <AiOutlineApi /> },
   { title: "Account", route: "account", icon: <VscAccount /> },
   { title: "About", route: "about", icon: <HiOutlineInformationCircle /> },
 ]
@@ -37,7 +37,7 @@ export default function Sidebar() {
         <div className="inline-flex">
           <Link href="/">
           <TbHexagonLetterR className="bg-transparent text-white text-4xl rounded cursor-pointer block float-left mr-4">
-            
+
           </TbHexagonLetterR>
           </Link>
           <h1 className={`text-2xl duration-300 text-white ${!open && "hidden"}`}>Riddle</h1>
@@ -62,6 +62,6 @@ export default function Sidebar() {
         </ul>
       </div>
 
-   
+
   )
 }

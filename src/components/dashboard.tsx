@@ -71,7 +71,7 @@ function getRevenueDashboard(gridDashboardData: IDashboard[], mainDashboardData:
 function getDashboards(currentTab: string) {
   switch (currentTab) {
     case 'revenue':
-      return getRevenueDashboard( MockRevenueData, totalReceivables, statsRevenue, 2, "Total Revenue");
+      return getRevenueDashboard( MockRevenueData, totalReceivables(7), statsRevenue, 2, "Total Revenue");
     case 'fees':
       return getRevenueDashboard(MockFeesData, totalFees, statsFees, 2, "Total fees");
     default:

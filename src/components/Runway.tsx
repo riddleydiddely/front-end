@@ -16,7 +16,7 @@ export default function Runway() {
         <div>
 
 
-            <dl className="mt-5 grid grid-cols-1 gap-5 ">
+            <dl className="mt-5 grid grid-cols-3 gap-5 ">
                 {stats.map((item) => (
                     <div
                         key={item.id}

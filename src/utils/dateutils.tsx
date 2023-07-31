@@ -1,11 +1,14 @@
 
-  export function dateRangeGenerator(star_date:Date, end_date:Date, step:number = 1): Date[] {
-    let start:Date = star_date;
-    let result:Date[]=[];
+  export function dateRangeGenerator(start:Date, end:Date): string[] {
+    const dates: string[] = [];
 
-    while (start <= end_date) {
-        result.push(start)
-      start.setDate(start.getDate() + step);
+    for(let currentDate = start; currentDate <= end; currentDate.setDate(currentDate.getDate() + 1)) {
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');  // months are 0-based in JavaScript
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      dates.push(`${year}-${month}-${day}`);
     }
-    return result;
+    console.log("dates\n")
+    console.log(dates)
+    return dates;
   }
