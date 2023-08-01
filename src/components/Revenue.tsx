@@ -15,9 +15,9 @@ const totalRevenue = amazonRevenue  + shopifyRevenue
 
 
 const stats = [
-    { id: 0, name: 'Total revenue', stat: Intl.NumberFormat("en-us", options).format(totalRevenue), icon: AiOutlineDollar, change: '3.2%', changeType: 'increase', bgColor: "bg-black" },
-    { id: 1, name: 'Shopify', stat: Intl.NumberFormat("en-us", options).format(shopifyRevenue), icon: SiShopify, change: '3.2%', changeType: 'increase', bgColor: "bg-[#95BF47]" },
-    { id: 2, name: 'Amazon', stat: Intl.NumberFormat("en-us", options).format(amazonRevenue), icon: SiAmazon, change: '5.4%', changeType: 'increase' , bgColor: "bg-[#FF9900]" },
+    { id: 0, name: 'Total revenue', stat: Intl.NumberFormat("en-us", options).format(totalRevenue), icon: AiOutlineDollar, change: '2.1%', changeType: 'increase', bgColor: "bg-black" },
+    { id: 1, name: 'Shopify', stat: Intl.NumberFormat("en-us", options).format(shopifyRevenue), icon: SiShopify, change: '4.5%', changeType: 'increase', bgColor: "bg-[#95BF47]" },
+    { id: 2, name: 'Amazon', stat: Intl.NumberFormat("en-us", options).format(amazonRevenue), icon: SiAmazon, change: '1.7%', changeType: 'increase' , bgColor: "bg-[#FF9900]" },
 ]
 
 function classNames(...classes:string[]) {
@@ -27,11 +27,11 @@ function classNames(...classes:string[]) {
 export default function Revenue() {
     return (
         <div>
-            <dl className="col-span-1 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-5">
+            <dl className="col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
                 {stats.map((item) => (
                     <div
                         key={item.id}
-                        className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
+                        className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow-xl sm:px-6 sm:pt-6 border border-gray-100">
                         <dt>
                             <div className={`absolute rounded-md ${item.bgColor} p-3`}>
                                 <item.icon className={`h-6 w-6 text-white `} aria-hidden="true" />

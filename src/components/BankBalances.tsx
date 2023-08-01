@@ -16,11 +16,11 @@ export default function BankBalances() {
     return (
         <div>
 
-            <dl className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
+            <dl className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-5 ">
                 {stats.map((item) => (
                     <div
                         key={item.id}
-                        className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
+                        className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow-xl sm:px-6 sm:pt-6 border border-gray-100"
                     >
                         <dt>
                             <div className="absolute rounded-md bg-black p-3">

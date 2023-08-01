@@ -20,7 +20,7 @@ export default function Runway() {
                 {stats.map((item) => (
                     <div
                         key={item.id}
-                        className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
+                        className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow-xl sm:px-6 sm:pt-6"
                     >
                         <dt>
                             <div className="absolute rounded-md bg-black p-3">
