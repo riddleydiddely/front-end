@@ -67,9 +67,7 @@ export const AccountChart = (props: PropsWithChildren<IChartProps>) => {
         },
     }
 
-
     return <div id="chart">
         <ReactApexChart options={options} series={props.dataSeries} type={props.type} height={350}/>
     </div>
-        ;
-};
+}

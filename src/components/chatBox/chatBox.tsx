@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {useSession, signIn, signOut} from "next-auth/react"
 import {Session} from "next-auth";
+import {BarChart} from "@/components/src/components/barchart";
 
 
 type ChatBoxProps = {
@@ -56,17 +57,32 @@ function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
+const response1a = getCopilotResponse("Sure here is how Denmark performed the past 6 months")
+let initialConversation: JSX.Element[] = [
+    getCopilotResponse("How can I help you today?"),
+]
+
 export default function ChatBox(props: ChatBoxProps) {
 
-    const response1a = getCopilotResponse("Sure here is how Denmark performed last month")
     const image = props.session?.user?.image ?? ''
     const name = props.session?.user?.name ?? ''
+    const [inputValue, setInputValue] = useState('');
+    const [chatOpen, setChatOpen] = useState(false)
+    const [conversation, setConversation] = useState<JSX.Element[]>(initialConversation)
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("event.target.value\n")
+        console.log(event.target.value)
+        setInputValue(event.target.value); // Update the state when the input value changes
+    }
     const handleKeyDown = async (event: any) => {
         let tempConv = conversation;
         if (event.key === 'Enter') {
+            event.preventDefault()
             await sleep(500)
             tempConv = tempConv.concat(getUserInput(event.target.value, image, name))
+            setInputValue(''); // Clear the input field
             setConversation(tempConv)
             await sleep(1000)
             tempConv = tempConv.concat(<progress className="progress w-32"></progress>)
@@ -74,22 +90,17 @@ export default function ChatBox(props: ChatBoxProps) {
             await sleep(3000)
             tempConv.pop()
             tempConv = tempConv.concat(response1a)
+            tempConv = tempConv.concat(<BarChart dataSeries={undefined} numberOfPredictions={2}></BarChart>
+            )
             setConversation(tempConv)
+
+
         }
     };
-    let initialConversation: JSX.Element[] = [
-        getCopilotResponse("How can I help you today?"),
-
-
-    ]
-    const [chatOpen, setChatOpen] = useState(false)
-    const [conversation, setConversation] = useState(initialConversation)
 
 
     return (
         <div className="fixed bottom-0 right-0 z-50 shadow-xl pr-4 pb-4  ">
-
-
             <div
                 className={`w-80 ${chatOpen ? "h-96" : "h-10"} duration-700 flex flex-col rounded-lg border border-gray-300 shadow-md bg-white`}>
 
@@ -111,12 +122,14 @@ export default function ChatBox(props: ChatBoxProps) {
                 </div>
 
                 <div className={`flex items-center border-t p-2 duration-1000 ${chatOpen ? "" : "hidden"}`}>
-
-                    <input type="text" placeholder="Ask co-pilot anything"
+                    <input type="text"
+                           placeholder="Ask co-pilot anything"
                            className="input-md input-bordered w-full max-w-xs"
-                           onKeyDown={(input) => handleKeyDown(input)}/>
+                           value={inputValue}
+                           onChange={(input) => handleChange(input)}
+                           onKeyDown={(input) => handleKeyDown(input)}
+                    />
                     <div>
-
                     </div>
                 </div>
             </div>
