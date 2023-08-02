@@ -8,7 +8,5 @@
       const day = String(currentDate.getDate()).padStart(2, '0');
       dates.push(`${year}-${month}-${day}`);
     }
-    console.log("dates\n")
-    console.log(dates)
     return dates;
   }

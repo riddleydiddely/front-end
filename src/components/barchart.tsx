@@ -32,7 +32,7 @@ export const BarChart = (props: PropsWithChildren<IChartProps>) => {
 
             }
         },
-        colors: ['rgb(22, 163, 74)', '#E91E63', '#546E7A', '#FF9800'],
+        colors: ['#ACE3BD', '#EA7D7C', '#546E7A', '#FF9800'],
         dataLabels: {
             enabled: false
         },

@@ -27,7 +27,7 @@ function classNames(...classes:string[]) {
 export default function Revenue() {
     return (
         <div>
-            <dl className="col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
+            <dl className="col-span-1 grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 gap-5">
                 {stats.map((item) => (
                     <div
                         key={item.id}
