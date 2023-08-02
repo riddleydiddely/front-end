@@ -1,67 +1,148 @@
-import { BsArrowLeftShort, BsSearch } from "react-icons/bs";
-import { AiOutlineApi } from "react-icons/ai";
+import React, {useContext, createContext, useState, ReactNode, FunctionComponent, useEffect} from "react";
+import {AiOutlineApi} from "react-icons/ai";
+import {FiChevronLeft, FiChevronRight} from "react-icons/fi";
+import {BsChevronLeft, BsChevronRight} from "react-icons/bs";
+import {signOut, useSession} from "next-auth/react";
+import {Session} from "next-auth";
+import {BiDotsVerticalRounded} from "react-icons/bi";
+import Link from "next/link";
 
-import { TbArrowMerge, TbHexagonLetterR } from "react-icons/tb";
-import { RiDashboardFill } from "react-icons/ri";
-import { TbMessages } from "react-icons/tb";
-import { MdAttachMoney } from "react-icons/md";
-
-import { VscAccount } from "react-icons/vsc";
-import { HiOutlineInformationCircle } from "react-icons/hi";
-import { useState } from 'react';
-import Link from 'next/link';
-import React from "react";
-
-const MenuItems = [
-
-  { title: "Dashboards", route: "dashboards", icon: <RiDashboardFill /> },
-  { title: "Reconciliation", route: "reconciliation", icon: <TbArrowMerge /> },
-  { title: "Messages", route: "messages", icon: <TbMessages /> },
-  { title: "Financing", route: "financing", icon: <MdAttachMoney /> },
-  { title: "Integrations", route: "integrations", spacing: "true", icon: <AiOutlineApi /> },
-  { title: "Settings", route: "settings", icon: <AiOutlineApi /> },
-  { title: "Account", route: "account", icon: <VscAccount /> },
-  { title: "About", route: "about", icon: <HiOutlineInformationCircle /> },
-]
-
-export default function Sidebar() {
-  const [open, setOpen] = useState(false)
-
-  return (
-      <div className={`fixed z-10 bg-black h-screen p-5 pt-5 ${open ? "w-72" : "w-20"} duration-300`}>
-
-        {/* Expand arrow */}
-        <BsArrowLeftShort className={`text-4xl bg-white text-black rounded-full absolute -right-5 top-100 border border-black ${!open && "rotate-180"} mr`} onClick={() => setOpen(!open)}></BsArrowLeftShort>
-
-        {/* Logo */}
-        <div className="inline-flex">
-          <Link href="/">
-          <TbHexagonLetterR className="bg-transparent text-white text-4xl rounded cursor-pointer block float-left mr-4">
-
-          </TbHexagonLetterR>
-          </Link>
-          <h1 className={`text-2xl duration-300 text-white ${!open && "hidden"}`}>Riddle</h1>
-        </div>
-
-        {/* Searchbar */}
-        <div className={`flex items-center rounded-md bg-light-white mt-4 px-4 py-2 ${open ? "px-4" : "px-19"}`}>
-          <BsSearch className="text-white text-lg mr-3"></BsSearch>
-          <input type="search" placeholder="Search" className={`text-white bg-transparent w-full outline-none `} />
-        </div>
-
-        {/* Menu items */}
-        <ul className="pt-2">
-          {MenuItems.map((item, index) => (
-              <li key={index} className={`text-green-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-secondary-green rounded-md mt-2 ${item.spacing ? "mt-9" : "mt-2"}`}>
-                <Link href={`/${item.route}`} className="text-2xl text-white block float-left">
-                  {item.icon ? item.icon : <RiDashboardFill />}
-                </Link>
-                <Link href={`/${item.route}`} className={`text-white text-base font-medium flex-1 ${!open && "hidden"}`}>{item.title}</Link>
-              </li>
-          ))}
-        </ul>
-      </div>
-
-
-  )
+interface SidebarContextType {
+    expanded: boolean;
+    selectedTab: string;
+    selectTab: (tab: string) => void;
 }
+
+interface SidebarProps {
+    children: ReactNode;
+}
+
+interface SidebarItemProps {
+    icon: JSX.Element;
+    text: string;
+    active: boolean;
+    alert: boolean;
+    href: string
+}
+
+const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
+
+function optionsArea() {
+    return <div className={"z-300 fixed"}>
+
+        <ul tabIndex={0}
+            className="menu menu-compact shadow-2xl dropdown-content mt-3 p-2 bg-base-100 rounded-box w-52">
+            <li>
+                <Link href={"account"} className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                </Link>
+            </li>
+            <li><Link href={"/settings"}>Settings</Link></li>
+            <li>
+                <button onClick={() => signOut()}>
+                    Logout
+                </button>
+            </li>
+        </ul>
+    </div>
+}
+
+function UserSection(expanded: boolean, session: Session) {
+    let fullName = (session.user?.name) ? (session.user?.name) : "Unknown name";
+    let email = (session.user?.email) ? (session.user?.email) : "Unknown email";
+    return <div className="border-t flex p-3">
+        <img
+            src={session.user?.image ?? "/unknown.jpg"}
+            alt=""
+            className="w-10 h-10 rounded-full ring-gray-500 ring hover:ring-gray-900 ring-offset-2"
+        />
+        <div
+            className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}`}>
+            <div className="leading-4">
+                <h4 className="font-semibold">{fullName}</h4>
+                <span className="text-xs text-gray-600">{email}</span>
+            </div>
+            <div className="dropdown dropdown-left dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-5">
+                    <BiDotsVerticalRounded size={20}/>
+                </label>
+                {optionsArea()}
+            </div>
+        </div>
+    </div>
+}
+
+const Sidebar: FunctionComponent<SidebarProps> = ({children}) => {
+    const [expanded, setExpanded] = useState<boolean>(typeof window !== "undefined" ? JSON.parse(localStorage.getItem("expanded") || "true") : true);
+    const [selectedTab, setSelectedTab] = useState<string>(typeof window !== "undefined" ? localStorage.getItem("selectedTab") || "home" : "home");
+    const {data: session, status} = useSession({required: true});
+
+    const selectTab = (tab: string) => {
+        setSelectedTab(tab);
+    };
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            localStorage.setItem("expanded", JSON.stringify(expanded));
+            localStorage.setItem("selectedTab", selectedTab);
+        }
+    }, [expanded, selectedTab]);
+    return (
+        <aside className={`h-screen fixed z-[1000] `}>
+            <nav className="h-full flex flex-col bg-white border-r shadow-sm ">
+                <div className="px-5 pb-8 pt-10 flex justify-between items-center">
+                    <img
+                        src="/riddle_logo.png"
+                        alt=""
+                        className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"}`}
+                    />
+
+                    <button
+                        onClick={() => setExpanded((curr) => !curr)}
+                        className="p-1.5 hover:font-extrabold hover:text-riddle-primary-dark-purple"
+                    >
+                        {expanded ? <BsChevronLeft/> : <BsChevronRight/>}
+                    </button>
+                </div>
+
+                <SidebarContext.Provider value={{expanded, selectedTab, selectTab}}>
+                    <ul className="flex-1 px-3">{children}</ul>
+                </SidebarContext.Provider>
+                {(session && status === "authenticated") ? UserSection(expanded, session) : null}
+            </nav>
+        </aside>
+    );
+};
+
+const SidebarItem: FunctionComponent<SidebarItemProps> = ({icon, text, alert, href}) => {
+    const context = useContext(SidebarContext);
+    const expanded = context?.expanded ?? true;
+    const active = context?.selectedTab === text;
+    const selectTab = context?.selectTab;
+    const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        selectTab?.(text);
+    };
+
+    return (
+        <Link href={href} onClick={(e) => onClick(e)}>
+            <li className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${active ? "bg-gradient-to-tr from-riddle-primary-purple to-riddle-primary-green text-indigo-800" : "hover:underline"}`}>
+                {icon}
+                <span className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}`}>
+                    {text}
+                </span>
+                {alert &&
+                    <div className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${expanded ? "" : "top-2"}`}/>}
+                {!expanded && (
+                    <div
+                        className={` absolute left-full rounded-md px-2 py-1 ml-6 backdrop-blur-xl text-black text-sm invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0`}>
+                        {text}
+                    </div>
+                )}
+            </li>
+        </Link>
+    );
+};
+
+export default Sidebar;
+export {SidebarItem};

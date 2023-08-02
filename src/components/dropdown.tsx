@@ -33,7 +33,7 @@ function Dropdown(input: DropdownProps)  {
     };
 
     return (
-        <div className="max-w-lg w-54">
+        <div className="max-w-lg w-54 mr-10">
             <div className="relative">
                 <button onClick={toggling}
                         className="w-full py-2 px-3 text-left bg-white font-medium text-gray-600 hover:text-gray-400">
