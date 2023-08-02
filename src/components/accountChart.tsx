@@ -33,7 +33,7 @@ export const AccountChart = (props: PropsWithChildren<IChartProps>) => {
                 show: false
             },
         },
-        colors: ['rgb(0,0,0)', '#546E7A', '#E91E63', '#FF9800'],
+        colors: ['#A69AE3', '#ACE3BD', '#000000', '#EA7D7C', '#FFDA58'],
         dataLabels: {
             enabled: false
         },

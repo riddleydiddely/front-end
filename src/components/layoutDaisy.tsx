@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { Session } from "next-auth";
+import Dropdown from "@/components/src/components/dropdown";
+import {CircleFlag} from "react-circle-flags";
 
 type LayoutProps = {
     title: string,
@@ -10,25 +12,26 @@ type LayoutProps = {
     children: ReactNode;
 };
 
-function renderLoginArea(session: Session | null) {
+function renderLoginArea(session: Session  ) {
 
-    if (session) {
         return (
             <Fragment>
                 <div className="dropdown dropdown-end">
-                    <div className='flex justify-center  mt-3 p-2'>
+                    <div className='flex justify-center space-x-5 mt-3 p-2'>
+
                         <div className='text-xs mr-6'>
                             <b><p>{`Logged in as ${session.user?.name}`}</p></b>
                             {`${session.user?.email}`}
                         </div>
+
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-5">
 
-                            <div className="w-24 rounded-full ring ring-[rgb(240,0,184)] ring-offset-base-100 ring-offset-2">
-
-                                <img src={session.user?.image ?? session.user?.name ?? 'img'} />
+                            <div className="w-24 rounded-full ring-gray-500 ring hover:ring-gray-900 ring-offset-2">
+                                <img src={session.user?.image ?? '/unknown.jpg'} />
                             </div>
                         </label>
                     </div>
+
                     <ul tabIndex={0} className="menu menu-compact shadow-2xl dropdown-content mt-3 p-2 bg-base-100 rounded-box w-52">
                         <li>
                             <Link href={"account"} className="justify-between">
@@ -46,31 +49,19 @@ function renderLoginArea(session: Session | null) {
                 </div>
             </Fragment>
         )
-    }
-    return (
-        <Fragment>
-            <div className="dropdown dropdown-end">
-                <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li>
-                        <a className="justify-between">
-                            Profile
-                            <span className="badge">New</span>
-                        </a>
-                    </li>
-                    <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
-                </ul>
-            </div>
-            <button className='btn' onClick={() => signIn()}>Sign in</button>
-        </Fragment>
-    )
-}
 
+}
 export const LayoutDaisy = (props: LayoutProps) => {
 
-    const { data: session } = useSession({ required: true })
+    const { data: session, status } = useSession({ required: true })
     const [activeTab, setActiveTab] = useState("integrations")
 
+    let options = [
+        {country:"se", entity:"Nine Pine AB"},
+        {country:"gb", entity:"Nine Pine Ltd"},
+        {country:"fi", entity:"Nine Pine Oy"},
+        {country:"de", entity:"Nine Pine GmbH"},
+    ];
     return (
         <Fragment>
             <div className="navbar bg-base-100 border-b-2 mb-10">
@@ -91,7 +82,8 @@ export const LayoutDaisy = (props: LayoutProps) => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {renderLoginArea(session)}
+                    <Dropdown options={options}/>
+                    {(session && status === "authenticated") ? renderLoginArea(session) : null}
                 </div>
             </div>
             <div className="px-24 pb-10 mb-10 w-screen ">
@@ -110,6 +102,5 @@ function getMenu(activeTab: string, setActiveTab:Function) {
             <li className={` mx-5  ${activeTab==="integrations" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("integrations")}><Link href={"/integrations/adding"}>Integrations</Link></li>
         </Fragment>
     )
-
 }
 

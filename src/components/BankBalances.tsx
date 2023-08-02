@@ -5,7 +5,7 @@ import {BiRun} from "react-icons/bi";
 const stats = [
     { id: 1, name: 'SEB', stat: '€71,897', icon: BsBank2, change: '3.2%', changeType: 'increase' },
     { id: 2, name: 'Revolut', stat: '€58.16', icon: BsBank2, change: '5.4%', changeType: 'increase' },
-    { id: 3, name: 'Runway', stat: '14 months', icon: BiRun, change: '1 week', changeType: 'increase' },
+    { id: 3, name: 'Runway', stat: '14 months', icon: BiRun, change: '1w', changeType: 'increase' },
 ]
 
 function classNames(...classes:string[]) {
@@ -16,14 +16,14 @@ export default function BankBalances() {
     return (
         <div>
 
-            <dl className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-5 ">
+            <dl className="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 gap-5 ">
                 {stats.map((item) => (
                     <div
                         key={item.id}
                         className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow-xl sm:px-6 sm:pt-6 border border-gray-100"
                     >
                         <dt>
-                            <div className="absolute rounded-md bg-black p-3">
+                            <div className="absolute rounded-md bg-[#A69AE3] p-3">
                                 <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
                             </div>
                             <p className="ml-16 truncate text-sm font-medium text-gray-500">{item.name}</p>
