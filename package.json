@@ -35,7 +35,8 @@
     "react-router-dom": "^6.10.0",
     "recharts": "^2.5.0",
     "tailwindcss": "^3.3.1",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "@types/js-cookie": "^3.0.3"
   },
   "jest": {
     "testPathIgnorePatterns": [
@@ -54,7 +55,6 @@
     "@testing-library/dom": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
-    "@types/js-cookie": "^3.0.3",
     "babel-jest": "^29.5.0",
     "jest": "^29.5.0"
   }
