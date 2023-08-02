@@ -1,7 +1,4 @@
-import { Transaction, transactionItems } from '../mockData/transactionMockData'
 import { Fragment, useState } from 'react';
-import Modal from './modal';
-import Suggestions from './suggestions';
 import Table from './table/table';
 import Pagination from './table/pagination';
 import Header from './table/header';

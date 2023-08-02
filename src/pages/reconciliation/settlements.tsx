@@ -1,6 +1,4 @@
 import { useRouter } from 'next/router'
-import TransactionsTable from "../../components/transactionsTable";
-import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import Insights from '../../components/reconciliation/insights';
 import Tabs from '../../components/common/tabs';
@@ -30,8 +28,8 @@ const Settlements = () => {
   }
 
   return <div>
-    {Tabs(tabSettings)}
-    {getContent(currentTab)}
+
+    <SettlementsTable></SettlementsTable>
   </div>
 }
 

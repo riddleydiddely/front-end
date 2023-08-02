@@ -5,14 +5,28 @@ import { Fragment, useState } from 'react';
 import { ApexOptions } from 'apexcharts';
 import { IDashboard, MockFeesData, statsFees, totalFees } from '../mockData/mockDashboardData/MockFeesData';
 import { StatsData } from '@/components/types/StatsData';
+import Tabs, {Tab} from "@/components/src/components/common/tabs";
+import {
+    MockReconciliationData, statsReconciliation,
+    totalReconciliation
+} from "@/components/src/mockData/mockDashboardData/MockReconciliationData";
 
+const tabs: Tab[] = [
+    { id: "reconciliation", button_name: "reconciliation"},
+    { id: "revenue", button_name: "revenue"},
+    { id: "fees", button_name: "fees" },
+    { id: "refund", button_name: "refund" },
+    { id: "disputes", button_name: "disputes" },
+    { id: "returns", button_name: "returns" },
+    { id: "chargeback", button_name: "chargeback", disabled: true },
+]
 
 function getStats(data: StatsData[]) {
   return (
     <div className="stats shadow flex align-middle justify-center my-10   ">
       {data.map((element: StatsData, key:number) => (
         <div key={key} className="stat ">
-          <div className="stat-figure text-secondary">
+          <div className="stat-figure text-riddle-palette-dark-purple">
             {element.svg}
           </div>
           <div className="stat-title">{element.title}</div>
@@ -23,20 +37,20 @@ function getStats(data: StatsData[]) {
       )}
     </div>)
 }
-
-function getTabs(currentTab: string, setCurrentTab: Function) {
-  return (
-    <div className="btn-group lg:btn-group-horizontal flex align-middle justify-center">
-      <button className={`btn ${currentTab === "revenue" && "btn-secondary"}`} onClick={() => setCurrentTab("revenue")}> Revenue</button>
-      <button className={`btn ${currentTab === "fees" && "btn-secondary"}`} onClick={() => setCurrentTab("fees")}>Fees</button>
-      <button className={`btn ${currentTab === "refund" && "btn-secondary"}`} onClick={() => setCurrentTab("refund")}>Refund</button>
-      <button className={`btn ${currentTab === "chargeback" && "btn-secondary"}`} onClick={() => setCurrentTab("chargeback")}>Chargeback</button>
-      <button className={`btn ${currentTab === "disputes" && "btn-secondary"}`} onClick={() => setCurrentTab("disputes")}>Disputes</button>
-      <button className={`btn btn-disabled`}>Returns </button>
-      <button className={`btn btn-disabled`}>Settlements </button>
-    </div>
-  )
-}
+//
+// function getTabs(currentTab: string, setCurrentTab: Function) {
+//   return (
+//     <div className="btn-group lg:btn-group-horizontal flex align-middle justify-center">
+//       <button className={`btn ${currentTab === "revenue" && "bg-riddle-primary-dark-purple border-riddle-primary-dark-purple"}`} onClick={() => setCurrentTab("revenue")}> Revenue</button>
+//       <button className={`btn ${currentTab === "fees" && "bg-riddle-primary-dark-purple border-riddle-primary-dark-purple"}`} onClick={() => setCurrentTab("fees")}>Fees</button>
+//       <button className={`btn ${currentTab === "refund" && "bg-riddle-primary-dark-purple border-riddle-primary-dark-purple"}`} onClick={() => setCurrentTab("refund")}>Refund</button>
+//       <button className={`btn ${currentTab === "chargeback" && "bg-riddle-primary-dark-purple border-riddle-primary-dark-purple"}`} onClick={() => setCurrentTab("chargeback")}>Chargeback</button>
+//       <button className={`btn ${currentTab === "disputes" && "bg-riddle-primary-dark-purple border-riddle-primary-dark-purple"}`} onClick={() => setCurrentTab("disputes")}>Disputes</button>
+//       <button className={`btn btn-disabled`}>Returns </button>
+//       <button className={`btn btn-disabled`}>Settlements </button>
+//     </div>
+//   )
+// }
 
 function getRevenueDashboard(gridDashboardData: IDashboard[], mainDashboardData: ApexOptions['series'],statsData: StatsData[], numberOfPredictions:number, titleMainDashboard:string) {
   return (
@@ -74,6 +88,8 @@ function getDashboards(currentTab: string) {
       return getRevenueDashboard( MockRevenueData, totalReceivables(7), statsRevenue, 2, "Total Revenue");
     case 'fees':
       return getRevenueDashboard(MockFeesData, totalFees, statsFees, 2, "Total fees");
+      case 'reconciliation':
+      return getRevenueDashboard(MockReconciliationData, totalReconciliation, statsReconciliation, 0, "Reconciliation rate");
     default:
       return null;
   }
@@ -82,9 +98,16 @@ function getDashboards(currentTab: string) {
 export default function Dashboard() {
   const [currentTab, setCurrentTab] = useState("revenue")
 
-  return (
+    let tabSettings = {
+        currentTab: currentTab,
+        setCurrentTab: setCurrentTab,
+        tabs: tabs
+    }
+
+    return (
     <div>
-      {getTabs(currentTab, setCurrentTab)}
+      {/*{getTabs(currentTab, setCurrentTab)}*/}
+        {Tabs(tabSettings)}
       {getDashboards(currentTab)}
     </div>
 

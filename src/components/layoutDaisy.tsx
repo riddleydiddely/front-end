@@ -1,10 +1,9 @@
 import React, { FC, Fragment, ReactNode } from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { Session } from "next-auth";
 import Dropdown from "@/components/src/components/dropdown";
-import {CircleFlag} from "react-circle-flags";
 
 type LayoutProps = {
     title: string,
@@ -96,10 +95,10 @@ export const LayoutDaisy = (props: LayoutProps) => {
 function getMenu(activeTab: string, setActiveTab:Function) {
     return (
         <Fragment>
-            <li className={` mx-5  ${activeTab==="reconciliation" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("reconciliation")}><Link href={"/reconciliation/settlements"}>Reconciliation</Link></li>
-            <li className={` mx-5  ${activeTab==="dashboards" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("dashboards")}><Link href={"/dashboards"}>Dashboards</Link></li>
-            <li className={` mx-5  ${activeTab==="home" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("home")}><Link href={"/home"}>Home</Link></li>
-            <li className={` mx-5  ${activeTab==="integrations" && "underline underline-offset-8 decoration-2"} rounded hover:text-secondary`} onClick={() => setActiveTab("integrations")}><Link href={"/integrations/adding"}>Integrations</Link></li>
+            <li className={` mx-5  ${activeTab==="reconciliation" && "underline underline-offset-8 decoration-2"} rounded hover:text-riddle-primary-dark-purple`} onClick={() => setActiveTab("reconciliation")}><Link href={"/reconciliation/settlements"}>Reconciliation</Link></li>
+            <li className={` mx-5  ${activeTab==="dashboards" && "underline underline-offset-8 decoration-2"} rounded hover:text-riddle-primary-dark-purple`} onClick={() => setActiveTab("dashboards")}><Link href={"/dashboards"}>Dashboards</Link></li>
+            <li className={` mx-5  ${activeTab==="home" && "underline underline-offset-8 decoration-2"} rounded hover:text-riddle-primary-dark-purple`} onClick={() => setActiveTab("home")}><Link href={"/home"}>Home</Link></li>
+            <li className={` mx-5  ${activeTab==="integrations" && "underline underline-offset-8 decoration-2"} rounded hover:text-riddle-primary-dark-purple`} onClick={() => setActiveTab("integrations")}><Link href={"/integrations/adding"}>Integrations</Link></li>
         </Fragment>
     )
 }
