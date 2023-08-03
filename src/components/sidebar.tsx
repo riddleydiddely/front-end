@@ -133,8 +133,8 @@ const SidebarItem: FunctionComponent<SidebarItemProps> = ({icon, text, alert, hr
 
     return (
         <Link href={href} onClick={(e) => onClick(e)}>
-            <li className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${active ? "bg-gradient-to-tr from-riddle-primary-purple to-riddle-primary-green text-indigo-800" : "hover:underline"} flex-nowrap`}>
-                <div className="flex-shrink-0">{icon}</div>
+            <li className={`relative flex items-center py-5 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${active ? "bg-gradient-to-tr from-riddle-primary-purple to-riddle-primary-green text-indigo-800" : "hover:underline"} flex-nowrap`}>
+                <div className="flex-shrink-0 text-2xl">{icon}</div>
 
                 <span className={`overflow-hidden transition-all duration-500 flex-shrink-0 whitespace-nowrap ${expanded ? "w-52 ml-3" : "w-0"}`}>
                     {text}
