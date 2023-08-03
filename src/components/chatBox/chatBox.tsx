@@ -118,7 +118,11 @@ export default function ChatBox(props: ChatBoxProps) {
                 </div>
 
                 <div className={`flex-1 px-4 py-4 overflow-y-auto duration-600 ${chatOpen ? "" : "hidden"}`}>
-                    {conversation}
+                    {conversation.map((chatMessage, index) => (
+                        <Fragment key={index}>
+                            {chatMessage}
+                        </Fragment>
+                    ))}
                 </div>
 
                 <div className={`flex items-center border-t p-2 duration-1000 ${chatOpen ? "" : "hidden"}`}>
