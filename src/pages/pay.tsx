@@ -83,8 +83,8 @@ interface MainPayAreaProps {
 
 const MainPayArea: React.FC<MainPayAreaProps> = ({activeButton, setActiveButton}) => {
     return (
-        <div
-            className="flex-1 flex flex-col rounded-l-xl justify-between mx-auto max-w-7xl p-12 sm:px-6 lg:px-8 bg-base-200">
+        <div className="flex-1 flex flex-col rounded-l-xl justify-between mx-auto max-w-7xl p-12 sm:px-6 lg:px-8 bg-base-200">
+            <h1 className={"text-4xl font-extrabold"}>Pay</h1>
             <div>
                 <TopButtons activeButton={activeButton} setActiveButton={setActiveButton}/>
                 <div className={"flex align-middle justify-center items-center p-10"}>

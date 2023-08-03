@@ -29,7 +29,7 @@ function sideBar() {
             <SidebarItem icon={<AiOutlineHome></AiOutlineHome>} text={"Home"} active={true} alert={false} href={"/home"}></SidebarItem>
             <SidebarItem icon={<AiOutlineCalculator></AiOutlineCalculator>} text={"Accounting"} active={false} alert={false} href={"/reconciliation/settlements"}></SidebarItem>
             <SidebarItem icon={<AiOutlineMoneyCollect></AiOutlineMoneyCollect>} text={"Pay"} active={false} alert={false} href={"/pay"}></SidebarItem>
-            <SidebarItem icon={<LiaFileInvoiceSolid></LiaFileInvoiceSolid>} text={"Get paid"} active={false} alert={false} href={"/"}></SidebarItem>
+            <SidebarItem icon={<LiaFileInvoiceSolid></LiaFileInvoiceSolid>} text={"Get paid"} active={false} alert={false} href={"/getpaid"}></SidebarItem>
             <SidebarItem icon={<GiExpense></GiExpense>} text={"Expense Management"} active={false} alert={false} href={"/"}></SidebarItem>
             <SidebarItem icon={<MdOutlineInsights></MdOutlineInsights>} text={"Insights"} active={false} alert={false} href={"/dashboards"}></SidebarItem>
         </Sidebar>)
