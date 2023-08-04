@@ -11,6 +11,8 @@ import {
     statsRevenue,
     totalReceivables
 } from "@/components/src/mockData/mockDashboardData/MockRevenueData";
+import VendorModal from "@/components/src/components/VendorModal";
+import {TabName} from "@/components/types/Tabs";
 
 interface TopButtonsProps {
     activeButton: string;
@@ -71,14 +73,28 @@ const MainContent: React.FC<MainContentProps> = ({activeButton}) => {
 }
 
 
-type ButtonProps = {
+export type ButtonProps = {
     text: string;
+    handleModal: (value: boolean) => void
 };
 
-const Button: React.FC<ButtonProps> = ({ text }) => {
+export const Button: React.FC<ButtonProps> = ({ text, handleModal }) => {
     return (
         <div className="flex justify-center items-center">
-            <button className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
+            <button onClick={()=>handleModal(true)} className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
+                <div className={"flex space-x-5 items-center"}>
+                    <AiOutlinePlus/>
+                    <p>{text}</p>
+                </div>
+            </button>
+        </div>
+    );
+}
+
+export const NormalButton: React.FC<{ text:string }> = ({ text }) => {
+    return (
+        <div className="flex justify-center items-center mb-10">
+            <button  className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
                 <div className={"flex space-x-5 items-center"}>
                     <AiOutlinePlus/>
                     <p>{text}</p>
@@ -105,13 +121,23 @@ const MainPayArea: React.FC<MainPayAreaProps> = ({activeButton, setActiveButton}
                         <MainContent activeButton={activeButton}/>
                     </div>
                 </div>
-                <Button text={"Start getting paid"}/>
+                <NormalButton  text={"Start getting paid"} />
             </div>
         </div>
     );
 }
 
 function Vendor() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return    <div className="flex-1 flex flex-col rounded-l-xl justify-between mx-auto max-w-7xl p-12 sm:px-6 lg:px-8 bg-base-200">
         <h1 className={"text-4xl font-extrabold"}>Vendors</h1>
         <div>
@@ -124,7 +150,8 @@ function Vendor() {
                 <p>Save vendor details and their preferred way of getting paid</p>
             </div>
         </div>
-        <Button text={"Add vendors"}/>
+        <Button text={"Add vendors"} handleModal={handleOpenModal} />
+        <VendorModal isOpen={isModalOpen} onClose={handleCloseModal} title={"Add a new vendor"} subtitle={"Have multiple vendors? "} />
     </div>;
 }
 const Pay: React.FC = () => {

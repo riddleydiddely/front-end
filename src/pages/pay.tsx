@@ -5,6 +5,8 @@ import {GrDocumentNotes} from "react-icons/gr";
 import {BiSortAlt2} from "react-icons/bi";
 import {IoFilterOutline} from "react-icons/io5";
 import {ActiveSubMenuContext} from "@/components/src/components/layout";
+import {ButtonProps} from "@/components/src/pages/getpaid";
+import VendorModal from "@/components/src/components/VendorModal";
 
 interface TopButtonsProps {
     activeButton: string;
@@ -63,14 +65,24 @@ const MainContent: React.FC<MainContentProps> = ({activeButton}) => {
             return <div></div>;
     }
 }
-type ButtonProps = {
-    text: string;
-};
 
-const Button: React.FC<ButtonProps> = ({ text }) => {
+
+export const Button: React.FC<ButtonProps> = ({ text, handleModal }) => {
     return (
         <div className="flex justify-center items-center">
-            <button className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
+            <button onClick={()=>handleModal(true)} className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
+                <div className={"flex space-x-5 items-center"}>
+                    <AiOutlinePlus/>
+                    <p>{text}</p>
+                </div>
+            </button>
+        </div>
+    );
+}
+export const NormalButton: React.FC<{ text:string }> = ({ text }) => {
+    return (
+        <div className="flex justify-center items-center mb-10">
+            <button  className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
                 <div className={"flex space-x-5 items-center"}>
                     <AiOutlinePlus/>
                     <p>{text}</p>
@@ -95,7 +107,7 @@ const MainPayArea: React.FC<MainPayAreaProps> = ({activeButton, setActiveButton}
                     <MainContent activeButton={activeButton}/>
                 </div>
             </div>
-            <Button text={"Schedule a payment"}/>
+            <NormalButton text={"Schedule a payment"}/>
         </div>
     );
 }
@@ -148,6 +160,16 @@ const EmptyInvoice: React.FC = () => {
 }
 
 function Customer() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return    <div className="flex-1 flex flex-col rounded-l-xl justify-between mx-auto max-w-7xl p-12 sm:px-6 lg:px-8 bg-base-200">
         <h1 className={"text-4xl font-extrabold"}>Customers</h1>
         <div>
@@ -160,7 +182,9 @@ function Customer() {
                 <p>Send payment request by adding customer details</p>
             </div>
         </div>
-        <Button text={"Add customers"}/>
+        <Button handleModal={handleOpenModal} text={"Add customers"}/>
+        <VendorModal isOpen={isModalOpen} onClose={handleCloseModal} title={"Add a new customer"} subtitle={"Have multiple customers? "} />
+
     </div>;
 }
 
