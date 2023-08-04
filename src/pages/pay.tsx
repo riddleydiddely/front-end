@@ -1,9 +1,10 @@
-import React, {useState, Dispatch, SetStateAction} from "react";
+import React, {useState, Dispatch, SetStateAction, useContext} from "react";
 import {AiOutlinePlus} from "react-icons/ai";
 import {SlMagnifier} from "react-icons/sl";
 import {GrDocumentNotes} from "react-icons/gr";
 import {BiSortAlt2} from "react-icons/bi";
 import {IoFilterOutline} from "react-icons/io5";
+import {ActiveSubMenuContext} from "@/components/src/components/layout";
 
 interface TopButtonsProps {
     activeButton: string;
@@ -62,14 +63,17 @@ const MainContent: React.FC<MainContentProps> = ({activeButton}) => {
             return <div></div>;
     }
 }
+type ButtonProps = {
+    text: string;
+};
 
-const SchedulePayment: React.FC = () => {
+const Button: React.FC<ButtonProps> = ({ text }) => {
     return (
         <div className="flex justify-center items-center">
             <button className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
                 <div className={"flex space-x-5 items-center"}>
                     <AiOutlinePlus/>
-                    <p>Schedule a payment</p>
+                    <p>{text}</p>
                 </div>
             </button>
         </div>
@@ -91,7 +95,7 @@ const MainPayArea: React.FC<MainPayAreaProps> = ({activeButton, setActiveButton}
                     <MainContent activeButton={activeButton}/>
                 </div>
             </div>
-            <SchedulePayment/>
+            <Button text={"Schedule a payment"}/>
         </div>
     );
 }
@@ -143,14 +147,48 @@ const EmptyInvoice: React.FC = () => {
     </div>;
 }
 
+function Customer() {
+    return    <div className="flex-1 flex flex-col rounded-l-xl justify-between mx-auto max-w-7xl p-12 sm:px-6 lg:px-8 bg-base-200">
+        <h1 className={"text-4xl font-extrabold"}>Customers</h1>
+        <div>
+            <div className={"flex align-middle justify-center items-center p-10"}>
+                <img className={"h-72  rounded-2xl p-4"} src={"/empty_cart.svg"} alt={""}/>
+            </div>
+            <div className={"flex flex-col align-middle items-center my-10"}>
+
+                <p className={"font-extrabold text-xl"}>Add your firs customer</p>
+                <p>Send payment request by adding customer details</p>
+            </div>
+        </div>
+        <Button text={"Add customers"}/>
+    </div>;
+}
+
 const Pay: React.FC = () => {
     const [activeButton, setActiveButton] = useState("Inbox");
-    return (
-        <div className={"flex"}>
-            <MainPayArea activeButton={activeButton} setActiveButton={setActiveButton}/>
-            <EmptyInvoice/>
-        </div>
-    );
+    const currentTab = useContext(ActiveSubMenuContext);
+
+    switch (currentTab) {
+        case 'Invoices':
+            return <div className={"flex"}>
+                <MainPayArea activeButton={activeButton} setActiveButton={setActiveButton}/>
+                <EmptyInvoice/>
+            </div>
+        case 'Customers':
+            return <div className={"flex"}>
+                <Customer />
+                <div className={" flex flex-1  align-middle items-center justify-center text-gray-400"}>
+
+                    <p className={"mt-10 text-xl"}>You have no customers yet</p>
+
+                </div>
+            </div>
+        default:
+            return null;
+    }
+
+
+
 }
 
 export default Pay;

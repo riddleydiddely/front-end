@@ -51,6 +51,8 @@ const TopBar = (activeSubTab: string | undefined, setActiveSubTab: SubTabSetter,
         const subMenus: { [key: string]: TabName[] } = {
             "/insights": ["Reconciliation", "Revenue", "Fees", "Refund", "Disputes", "Returns"],
             "/integrations": ["Accounting Systems", "OMS", "PSPs"],
+            "/getpaid": ["Vendors", "Payments"],
+            "/pay": ["Customers", "Invoices"],
         }
 
         let items = subMenus[activeMainTab] || [];
@@ -105,6 +107,8 @@ const getActiveSubTab = (activeMainTab: string): TabName => {
     const subMenus: { [key: string]: TabName[] } = {
         "/insights": ["Reconciliation", "Revenue", "Fees", "Refund", "Disputes", "Returns"],
         "/integrations": ["Accounting Systems", "OMS", "PSPs"],
+        "/getpaid": ["Vendors", "Payments"],
+        "/pay": ["Customers", "Invoices"],
     }
 
     let items = subMenus[activeMainTab] || [];

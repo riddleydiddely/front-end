@@ -1,9 +1,16 @@
-import React, {useState, Dispatch, SetStateAction} from "react";
+import React, {useState, Dispatch, SetStateAction, useContext} from "react";
 import {AiOutlinePlus} from "react-icons/ai";
 import {SlMagnifier} from "react-icons/sl";
 import {GrDocumentNotes} from "react-icons/gr";
 import {BiSortAlt2} from "react-icons/bi";
 import {IoFilterOutline} from "react-icons/io5";
+import {ActiveSubMenuContext} from "@/components/src/components/layout";
+import {switchCase} from "@babel/types";
+import {
+    MockRevenueData,
+    statsRevenue,
+    totalReceivables
+} from "@/components/src/mockData/mockDashboardData/MockRevenueData";
 
 interface TopButtonsProps {
     activeButton: string;
@@ -63,13 +70,18 @@ const MainContent: React.FC<MainContentProps> = ({activeButton}) => {
     }
 }
 
-const SchedulePayment: React.FC = () => {
-    return (
-        <div className="flex justify-center items-center mb-10">
-            <button className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
-                <div className={" flex space-x-5 items-center"}>
 
-                    <p>Start getting paid</p>
+type ButtonProps = {
+    text: string;
+};
+
+const Button: React.FC<ButtonProps> = ({ text }) => {
+    return (
+        <div className="flex justify-center items-center">
+            <button className={"rounded-md bg-riddle-palette-dark-purple px-4 py-2 text-white"}>
+                <div className={"flex space-x-5 items-center"}>
+                    <AiOutlinePlus/>
+                    <p>{text}</p>
                 </div>
             </button>
         </div>
@@ -93,21 +105,50 @@ const MainPayArea: React.FC<MainPayAreaProps> = ({activeButton, setActiveButton}
                         <MainContent activeButton={activeButton}/>
                     </div>
                 </div>
-                <SchedulePayment/>
+                <Button text={"Start getting paid"}/>
             </div>
         </div>
     );
 }
 
+function Vendor() {
+    return    <div className="flex-1 flex flex-col rounded-l-xl justify-between mx-auto max-w-7xl p-12 sm:px-6 lg:px-8 bg-base-200">
+        <h1 className={"text-4xl font-extrabold"}>Vendors</h1>
+        <div>
+            <div className={"flex align-middle justify-center items-center p-10"}>
+                <img className={"h-72  rounded-2xl p-4"} src={"/void.svg"} alt={""}/>
+            </div>
+            <div className={"flex flex-col align-middle items-center my-10"}>
 
+                <p className={"font-extrabold text-xl"}>Add your firs vendor</p>
+                <p>Save vendor details and their preferred way of getting paid</p>
+            </div>
+        </div>
+        <Button text={"Add vendors"}/>
+    </div>;
+}
 const Pay: React.FC = () => {
     const [activeButton, setActiveButton] = useState("Unsent");
-    return (
-        <div className={"flex"}>
-            <MainPayArea activeButton={activeButton} setActiveButton={setActiveButton}/>
+    const currentTab = useContext(ActiveSubMenuContext);
 
-        </div>
-    );
+
+    switch (currentTab) {
+        case 'Payments':
+            return <MainPayArea activeButton={activeButton} setActiveButton={setActiveButton}/>
+        case 'Vendors':
+            return <div className={"flex"}>
+                <Vendor />
+                <div className={" flex flex-1  align-middle items-center justify-center text-gray-400"}>
+
+                    <p className={"mt-10 text-xl"}>You have no vendors yet</p>
+
+                </div>
+            </div>
+        default:
+            return null;
+    }
+
+
 }
 
 export default Pay;

@@ -9,3 +9,7 @@ export type TabName =
     | "OMS"
     | "PSPs"
     | "Banks"
+    | "Vendors"
+    | "Payments"
+    | "Customers"
+    | "Invoices"
