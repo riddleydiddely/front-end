@@ -1,7 +1,7 @@
 import { AccountChart } from './accountChart';
 import {  MockRevenueData, statsRevenue, totalReceivables } from '../mockData/mockDashboardData/MockRevenueData';
 import Link from 'next/link'
-import { Fragment, useState } from 'react';
+import {Fragment, useContext, useState} from 'react';
 import { ApexOptions } from 'apexcharts';
 import { IDashboard, MockFeesData, statsFees, totalFees } from '../mockData/mockDashboardData/MockFeesData';
 import { StatsData } from '@/components/types/StatsData';
@@ -10,6 +10,8 @@ import {
     MockReconciliationData, statsReconciliation,
     totalReconciliation
 } from "@/components/src/mockData/mockDashboardData/MockReconciliationData";
+import {ActiveSubMenuContext} from "@/components/src/components/layout";
+import {TabName} from "@/components/types/Tabs";
 
 const tabs: Tab[] = [
     { id: "reconciliation", button_name: "reconciliation"},
@@ -82,13 +84,13 @@ function getRevenueDashboard(gridDashboardData: IDashboard[], mainDashboardData:
   )
 }
 
-function getDashboards(currentTab: string) {
+function getDashboards(currentTab: TabName) {
   switch (currentTab) {
-    case 'revenue':
+    case 'Revenue':
       return getRevenueDashboard( MockRevenueData, totalReceivables(7), statsRevenue, 2, "Total Revenue");
-    case 'fees':
+    case 'Fees':
       return getRevenueDashboard(MockFeesData, totalFees, statsFees, 2, "Total fees");
-      case 'reconciliation':
+      case 'Reconciliation':
       return getRevenueDashboard(MockReconciliationData, totalReconciliation, statsReconciliation, 0, "Reconciliation rate");
     default:
       return null;
@@ -96,19 +98,13 @@ function getDashboards(currentTab: string) {
 }
 
 export default function Dashboard() {
-  const [currentTab, setCurrentTab] = useState("revenue")
-
-    let tabSettings = {
-        currentTab: currentTab,
-        setCurrentTab: setCurrentTab,
-        tabs: tabs
-    }
+    const currentTab = useContext(ActiveSubMenuContext);
 
     return (
     <div>
       {/*{getTabs(currentTab, setCurrentTab)}*/}
-        {Tabs(tabSettings)}
-      {getDashboards(currentTab)}
+      {/*  {Tabs(tabSettings)}*/}
+      {getDashboards(currentTab ?? "Reconciliation")}
     </div>
 
   )

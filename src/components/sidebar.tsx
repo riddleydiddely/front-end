@@ -1,11 +1,10 @@
 import React, {useContext, createContext, useState, ReactNode, FunctionComponent, useEffect} from "react";
-import {AiOutlineApi} from "react-icons/ai";
-import {FiChevronLeft, FiChevronRight} from "react-icons/fi";
 import {BsChevronLeft, BsChevronRight} from "react-icons/bs";
 import {signOut, useSession} from "next-auth/react";
 import {Session} from "next-auth";
 import {BiDotsVerticalRounded} from "react-icons/bi";
 import Link from "next/link";
+import {MainTabSetter} from "@/components/src/components/layout";
 
 interface SidebarContextType {
     expanded: boolean;
@@ -14,15 +13,15 @@ interface SidebarContextType {
 }
 
 interface SidebarProps {
+    selectedTab: string;
+    setSelectedTab: MainTabSetter;
     children: ReactNode;
 }
 
 interface SidebarItemProps {
     icon: JSX.Element;
     text: string;
-    active: boolean;
-    alert: boolean;
-    href: string
+    href: string;
 }
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
@@ -75,9 +74,8 @@ function UserSection(expanded: boolean, session: Session) {
     </>
 }
 
-const Sidebar: FunctionComponent<SidebarProps> = ({children}) => {
+const Sidebar: FunctionComponent<SidebarProps> = ({children, selectedTab, setSelectedTab}) => {
     const [expanded, setExpanded] = useState<boolean>(true);
-    const [selectedTab, setSelectedTab] = useState<string>("home");
     const {data: session, status} = useSession({required: true});
     const selectTab = (tab: string) => {
         setSelectedTab(tab);
@@ -122,24 +120,30 @@ const Sidebar: FunctionComponent<SidebarProps> = ({children}) => {
     );
 };
 
-const SidebarItem: FunctionComponent<SidebarItemProps> = ({icon, text, alert, href}) => {
+const SidebarItem: FunctionComponent<SidebarItemProps> = ({icon, text, href}) => {
     const context = useContext(SidebarContext);
     const expanded = context?.expanded ?? true;
-    const active = context?.selectedTab === text;
+    const active = context?.selectedTab === href;
     const selectTab = context?.selectTab;
-    const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-        selectTab?.(text);
+    const onClick = () => {
+        selectTab?.(href.toLowerCase().replace(" ", ""));
     };
 
     return (
-        <Link href={href} onClick={(e) => onClick(e)}>
-            <li className={`relative flex items-center p-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${active ? "bg-black text-white" : "hover:underline"} flex-nowrap`}>
+        <Link href={href} onClick={() => onClick()}>
+            <li className={` relative flex items-center p-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${active ? "bg-black text-white" : "hover:underline"} flex-nowrap`}>
                 <div className="flex-shrink-0 text-2xl">{icon}</div>
 
-                <span className={`overflow-hidden transition-all duration-500 flex-shrink-0 whitespace-nowrap ${expanded ? "w-52 ml-3" : "w-0"}`}>
+                <span
+                    className={`overflow-hidden transition-all duration-500 flex-shrink-0 whitespace-nowrap ${expanded ? "w-52 ml-3" : "w-0"}`}>
                     {text}
                 </span>
-
+                {!expanded && (
+                    <div
+                        className={` absolute left-full rounded-md px-2 py-1 ml-6 bg-black text-white text-sm invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0   `}>
+                        {text}
+                    </div>
+                )}
             </li>
         </Link>
     );

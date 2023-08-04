@@ -1,0 +1,11 @@
+export type TabName =
+    "Reconciliation"
+    | "Revenue"
+    | "Fees"
+    | "Refund"
+    | "Disputes"
+    | "Returns"
+    | "Accounting Systems"
+    | "OMS"
+    | "PSPs"
+    | "Banks"

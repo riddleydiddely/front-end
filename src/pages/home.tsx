@@ -20,7 +20,6 @@ export default function Home() {
 
     const {data: session, status} = useSession()
     const titleStyle = "text-4xl font-semibold leading-6 text-gray-900 mb-5";
-    let dividerStyle = "divider my-10";
     return <>
         <div className={"mb-10"}>
             <h3 className={titleStyle}>Bank Balances</h3>
