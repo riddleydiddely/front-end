@@ -1,14 +1,6 @@
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import React, {useContext} from 'react'
-import { ParsedUrlQuery } from 'querystring';
-import { useEffect, useState } from 'react';
-import Tabs from '../components/common/tabs';
-import { Tab } from '../components/common/tabs';
 import IntegrationCard from '../components/integration/IntegrationCard';
 import { AccountingSystems, PaymentServiceProvidors, OrderManagementSystems } from '../mockData/IntegrationMockData';
-import { GetServerSideProps } from 'next';
-import { GetStaticPaths } from 'next'
 import {ActiveSubMenuContext} from "@/components/src/components/layout";
 import {TabName} from "@/components/types/Tabs";
 
@@ -43,7 +35,6 @@ function Integrations() {
 
   return (
     <div>
-      {/*{Tabs(tabSettings)}*/}
       {getContent(currentTab ?? "Accounting Systems")}
     </div>
   )
