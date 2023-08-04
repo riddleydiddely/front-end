@@ -12,7 +12,7 @@ export const AccountingSystems: Integration[] = [
     name: "Fortnox",
     description: "Fortnox is a portfolio of intelligent business applications that delivers superior operational efficiency and breakthrough customer experiences.",
     image_source: 'fortnox.jpeg',
-    url: "https://apps.fortnox.se/oauth-v1/auth?client_id=GQgPFNBPkuoB&redirect_uri=https://demo.getriddle.com/integrations/added/&scope=bookkeeping%20salary&state=somestate123&access_type=offline&response_type=code&account_type=service",
+    url: "https://apps.fortnox.se/oauth-v1/auth?client_id=GQgPFNBPkuoB&redirect_uri=https://demo.getriddle.com/integrations/&scope=bookkeeping%20salary&state=somestate123&access_type=offline&response_type=code&account_type=service",
     status: "NotAdded"
   },
   {
@@ -87,7 +87,7 @@ export const PaymentServiceProvidors: Integration[] = [
     status: "NotAdded"
   },
 
- 
+
 ];
 
 export const OrderManagementSystems: Integration[] = [
@@ -121,5 +121,5 @@ export const OrderManagementSystems: Integration[] = [
     image_source: 'centra.png',
     status: "NotAdded"
   },
- 
+
 ];

@@ -72,8 +72,6 @@ export default function ChatBox(props: ChatBoxProps) {
     const [conversation, setConversation] = useState<JSX.Element[]>(initialConversation)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("event.target.value\n")
-        console.log(event.target.value)
         setInputValue(event.target.value); // Update the state when the input value changes
     }
     const handleKeyDown = async (event: any) => {

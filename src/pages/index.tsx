@@ -1,11 +1,15 @@
+import { GetServerSideProps } from 'next';
 
-import { useSession } from 'next-auth/react';
-import Dashboard from '../components/dashboard';
-
-
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    redirect: {
+      destination: '/home',
+      permanent: false,
+    },
+  }
+}
 export default function Home() {
-  const { data: session, status } = useSession()
-  return  <Dashboard></Dashboard>
+  return  null
 }
 
 

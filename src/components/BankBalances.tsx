@@ -3,8 +3,8 @@ import { CursorArrowRaysIcon, EnvelopeOpenIcon, UsersIcon } from '@heroicons/rea
 import {BsBank2} from "react-icons/bs";
 import {BiRun} from "react-icons/bi";
 const stats = [
-    { id: 1, name: 'SEB', stat: '€71,897', icon: BsBank2, change: '3.2%', changeType: 'increase' },
-    { id: 2, name: 'Revolut', stat: '€58.16', icon: BsBank2, change: '5.4%', changeType: 'increase' },
+    { id: 1, name: 'SEB', stat: '€71,87.12', icon: BsBank2, change: '3.2%', changeType: 'increase' },
+    { id: 2, name: 'Revolut', stat: '€5,33.16', icon: BsBank2, change: '5.4%', changeType: 'increase' },
     { id: 3, name: 'Runway', stat: '14 months', icon: BiRun, change: '1w', changeType: 'increase' },
 ]
 
@@ -16,7 +16,7 @@ export default function BankBalances() {
     return (
         <div>
 
-            <dl className="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 gap-5 ">
+            <dl className="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 gap-5 ">
                 {stats.map((item) => (
                     <div
                         key={item.id}

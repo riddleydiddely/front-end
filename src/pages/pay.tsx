@@ -12,8 +12,8 @@ interface TopButtonsProps {
 
 const TopButtons: React.FC<TopButtonsProps> = ({activeButton, setActiveButton}) => {
     return (
-        <div id="bar" className={"flex space-x-10 justify-between"}>
-            <div id="buttons" className={"flex space-x-2 justify-between"}>
+        <div id="bar" className={"flex justify-between"}>
+            <div id="buttons" className={"flex space-x-4 justify-between"}>
                 <button
                     className={`font-bold hover:text-black ${activeButton === "Inbox" ? "underline underline-offset-4 text-black" : "text-gray-400"}`}
                     onClick={() => setActiveButton("Inbox")}>Inbox

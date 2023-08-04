@@ -57,7 +57,7 @@ export default function Revenue() {
                             </p>
                             <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
                                 <div className="text-sm">
-                                    <Link href="/dashboards" className="font-medium text-black hover:text-gray-500">
+                                    <Link href="/insights" className="font-medium text-black hover:text-gray-500">
                                         See details<span className="sr-only"> {item.name} stats</span>
                                     </Link>
                                 </div>
