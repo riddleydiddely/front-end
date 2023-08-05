@@ -1,18 +1,7 @@
 import React, {useState, Dispatch, SetStateAction, useContext} from "react";
 import {AiOutlinePlus} from "react-icons/ai";
-import {SlMagnifier} from "react-icons/sl";
-import {GrDocumentNotes} from "react-icons/gr";
-import {BiSortAlt2} from "react-icons/bi";
-import {IoFilterOutline} from "react-icons/io5";
 import {ActiveSubMenuContext} from "@/components/src/components/layout";
-import {switchCase} from "@babel/types";
-import {
-    MockRevenueData,
-    statsRevenue,
-    totalReceivables
-} from "@/components/src/mockData/mockDashboardData/MockRevenueData";
 import VendorModal from "@/components/src/components/VendorModal";
-import {TabName} from "@/components/types/Tabs";
 
 interface TopButtonsProps {
     activeButton: string;
