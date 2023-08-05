@@ -39,7 +39,7 @@ export default function SettlementsTable() {
 
     <div className='align-middle justify-center'>
       <Table content={content} setShowModal={setShowModal}></Table>
-      <Pagination pages={[1, 2]}></Pagination>
+
     </div>
 
   )

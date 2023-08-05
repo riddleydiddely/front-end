@@ -13,3 +13,7 @@ export type TabName =
     | "Payments"
     | "Customers"
     | "Invoices"
+    | "Accounts Receivables"
+    | "Accounts Payables"
+    | "Balance Sheet"
+    | "Profit & Loss"
