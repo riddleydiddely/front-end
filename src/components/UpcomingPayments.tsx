@@ -5,6 +5,7 @@ import {TbReceiptTax, TbTruckDelivery} from "react-icons/tb";
 import {MdInventory} from "react-icons/md";
 import React from "react";
 import {FiArrowRight} from "react-icons/fi";
+import {GiReceiveMoney} from "react-icons/gi";
 
 let options= {
     currency: "EUR",
@@ -47,11 +48,18 @@ export default function UpcomingPayments() {
 
 
                             <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
-                                <div className="text-sm">
-                                    <a href="#" className="font-medium text-black hover:text-gray-500">
+                                <div className="flex justify-between text-sm">
+                                    <a href="#" className="font-medium text-gray-500 hover:text-black">
                                         <div className={"flex items-center"}>
                                         Pay now
                                             <FiArrowRight className={"ml-1"}></FiArrowRight>
+                                        </div>
+                                        <span className="sr-only"> {item.name} stats</span>
+                                    </a>
+                                    <a href="#" className="font-medium text-gray-500 hover:text-black">
+                                        <div className={"flex items-center"}>
+                                            Finance
+                                            <GiReceiveMoney className={"ml-1"}></GiReceiveMoney>
                                         </div>
                                         <span className="sr-only"> {item.name} stats</span>
                                     </a>
