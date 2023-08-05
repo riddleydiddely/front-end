@@ -25,7 +25,7 @@ export default function Home() {
             <h3 className={titleStyle}>Bank Balances</h3>
             <div className={"flex space-x-5 "}>
                 <div className={"flex-1"}>
-                    <div className={"grid grid-cols-2 gap-4"}>
+                    <div className={"grid grid-cols-2 sm:grid-cols-1 md:grid-cols-1 gap-4"}>
                         <div className={"col-span-2 "}>
                             <BankBalances></BankBalances>
                         </div>

@@ -18,6 +18,14 @@ type LayoutProps = {
     children: ReactNode;
 };
 
+const subMenus: { [key: string]: TabName[] } = {
+    "/insights": ["Reconciliation", "Revenue", "Fees", "Refund", "Disputes", "Returns"],
+    "/integrations": ["Accounting Systems", "OMS", "PSPs"],
+    "/getpaid": ["Vendors", "Payments"],
+    "/pay": ["Customers", "Invoices"],
+    "/reconciliation/settlements": ["Accounts Receivables", "Accounts Payables", "Balance Sheet", "Profit & Loss"],
+}
+
 export type SubTabSetter = (value: TabName) => void;
 export type MainTabSetter = (value: string) => void;
 const options = [
@@ -32,7 +40,6 @@ const sideBarItems = [
     { icon: <AiOutlineCalculator />, text: "Accounting", href: "/reconciliation/settlements" },
     { icon: <AiOutlineMoneyCollect />, text: "Pay", href: "/pay" },
     { icon: <LiaFileInvoiceSolid />, text: "Get paid", href: "/getpaid" },
-    { icon: <GiExpense />, text: "Expense Management", href: "/expensemanagement" },
     { icon: <MdOutlineInsights />, text: "Insights", href: "/insights" },
     { icon: <PiPlugsConnected />, text: "Integrations", href: "/integrations" },
 ];
@@ -47,18 +54,7 @@ const SideBar = (activeTab: string, setActiveTab: MainTabSetter) => (
 
 const TopBar = (activeSubTab: string | undefined, setActiveSubTab: SubTabSetter, activeMainTab: string) => {
     const getMenu = (activeSubTab: string | undefined, setActiveSubTab: SubTabSetter, activeMainTab: string) => {
-        activeMainTab = activeMainTab.toLowerCase().replace(" ", "")
-        const subMenus: { [key: string]: TabName[] } = {
-            "/insights": ["Reconciliation", "Revenue", "Fees", "Refund", "Disputes", "Returns"],
-            "/integrations": ["Accounting Systems", "OMS", "PSPs"],
-            "/getpaid": ["Vendors", "Payments"],
-            "/pay": ["Customers", "Invoices"],
-            "/reconciliation/settlements": ["Accounts Receivables", "Accounts Payables", "Balance Sheet", "Profit & Loss"],
-
-        }
-
         let items = subMenus[activeMainTab] || [];
-
         return (
             <Fragment>
                 {items.map((item, key) => {
@@ -106,17 +102,7 @@ const TopBar = (activeSubTab: string | undefined, setActiveSubTab: SubTabSetter,
 export const ActiveSubMenuContext = createContext<TabName | undefined>(undefined);
 
 const getActiveSubTab = (activeMainTab: string): TabName => {
-    activeMainTab = activeMainTab.toLowerCase().replace(" ", "")
-    const subMenus: { [key: string]: TabName[] } = {
-        "/insights": ["Reconciliation", "Revenue", "Fees", "Refund", "Disputes", "Returns"],
-        "/integrations": ["Accounting Systems", "OMS", "PSPs"],
-        "/getpaid": ["Vendors", "Payments"],
-        "/pay": ["Customers", "Invoices"],
-        "/reconciliation/settlements": ["Accounts Receivables", "Accounts Payables", "Balance Sheet", "Profit & Loss"],
-    }
-
     let items = subMenus[activeMainTab] || [];
-
     return items[0];
 }
 
