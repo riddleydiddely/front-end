@@ -53,6 +53,8 @@ const TopBar = (activeSubTab: string | undefined, setActiveSubTab: SubTabSetter,
             "/integrations": ["Accounting Systems", "OMS", "PSPs"],
             "/getpaid": ["Vendors", "Payments"],
             "/pay": ["Customers", "Invoices"],
+            "/reconciliation/settlements": ["Accounts Receivables", "Accounts Payables", "Balance Sheet", "Profit & Loss"],
+
         }
 
         let items = subMenus[activeMainTab] || [];
@@ -62,7 +64,7 @@ const TopBar = (activeSubTab: string | undefined, setActiveSubTab: SubTabSetter,
                 {items.map((item, key) => {
                     return (
                         <li key={key}
-                            className={`mx-5  ${activeSubTab === item && "underline underline-offset-8 decoration-2"} rounded hover:text-riddle-primary-dark-purple`}
+                            className={`mx-5  ${activeSubTab === item && "underline underline-offset-8 decoration-4"} rounded hover:text-riddle-primary-dark-purple`}
                             onClick={() => setActiveSubTab(item)}>{item}</li>
                     )
                 })}
@@ -71,7 +73,7 @@ const TopBar = (activeSubTab: string | undefined, setActiveSubTab: SubTabSetter,
     }
 
     return (
-        <div className="navbar bg-base-100 border-b-2 mb-10 sticky top-0 z-[500]">
+        <div className="navbar bg-base-100 border-b-2 mb-10 shadow-xl py-6 sticky top-0 z-[500]">
             <div className="navbar-start ">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -86,7 +88,8 @@ const TopBar = (activeSubTab: string | undefined, setActiveSubTab: SubTabSetter,
                         {getMenu(activeSubTab, setActiveSubTab, activeMainTab)}
                     </ul>
                 </div>
-                <Link href={"/insights"} className="btn btn-ghost normal-case text-4xl">Riddle</Link>
+                {/*<Link href={"/home"} className="font-extrabold text-4xl ml-6">Riddle</Link>*/}
+                <img src={"/riddle_logo.png"} className={"h-10 ml-10"}/>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul tabIndex={0} className="menu-horizontal dropdown-content px-1 ">
@@ -109,6 +112,7 @@ const getActiveSubTab = (activeMainTab: string): TabName => {
         "/integrations": ["Accounting Systems", "OMS", "PSPs"],
         "/getpaid": ["Vendors", "Payments"],
         "/pay": ["Customers", "Invoices"],
+        "/reconciliation/settlements": ["Accounts Receivables", "Accounts Payables", "Balance Sheet", "Profit & Loss"],
     }
 
     let items = subMenus[activeMainTab] || [];
@@ -134,7 +138,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
     useEffect(() => {
         setActiveMainTab(router.pathname);
-        setActiveSubTab(getActiveSubTab(activeMainTab));
+        setActiveSubTab((localStorage.getItem(activeMainTab + "-activeSubTab") || getActiveSubTab(activeMainTab)) as TabName);
     }, [router.pathname]);
 
     return (
