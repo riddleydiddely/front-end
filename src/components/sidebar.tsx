@@ -58,13 +58,13 @@ function UserSection(expanded: boolean, session: Session) {
                 className="w-10 h-10 rounded-full ring-gray-500 ring hover:ring-gray-900 ring-offset-2 items-center"
             />
             <div
-                className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}`}>
+                className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-5" : "w-0"}`}>
                 <div className="leading-4">
                     <h4 className="font-semibold">{fullName}</h4>
                     <span className="text-xs text-gray-600">{email}</span>
                 </div>
                 <div className="dropdown dropdown-left dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-5">
+                    <label tabIndex={0} className=" hover:text-black text-gray-500 avatar mr-5">
                         <BiDotsVerticalRounded size={20}/>
                     </label>
                     {optionsArea()}
@@ -95,21 +95,22 @@ const Sidebar: FunctionComponent<SidebarProps> = ({children, selectedTab, setSel
     }, [expanded, selectedTab]);
     return (
         <aside className={`h-screen fixed z-[1000] `}>
-            <nav className="h-full flex flex-col bg-white border-r shadow-sm ">
-                <div className="px-5 pb-8 pt-10 flex justify-between items-center">
-                    <img
-                        src="/riddle_logo.png"
-                        alt=""
-                        className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"}`}
-                    />
+            <nav className="h-full flex flex-col bg-white border-r shadow-xl ">
 
                     <button
                         onClick={() => setExpanded((curr) => !curr)}
-                        className="p-1.5 hover:font-extrabold hover:text-riddle-primary-dark-purple"
+                        className="p-1.5 hover:font-extrabold hover:text-riddle-primary-dark-purple "
                     >
+                        <div className=" h-10 px-5 pb-8 pt-16 flex justify-between items-center">
+                    <img
+                        src="/riddle_logo.png"
+                        alt=""
+                        className={`overflow-hidden transition-all duration-500 ${expanded ? "w-32" : "w-0"}`}
+                    />
+
                         {expanded ? <BsChevronLeft/> : <BsChevronRight/>}
-                    </button>
                 </div>
+                    </button>
 
                 <SidebarContext.Provider value={{expanded, selectedTab, selectTab}}>
                     <ul className="flex-1 px-3">{children}</ul>
