@@ -8,6 +8,7 @@ import {MainTabSetter} from "@/components/src/components/layout";
 
 interface SidebarContextType {
     expanded: boolean;
+    setExpanded: (expanded: boolean) => void;
     selectedTab: string;
     selectTab: (tab: string) => void;
 }
@@ -112,7 +113,7 @@ const Sidebar: FunctionComponent<SidebarProps> = ({children, selectedTab, setSel
                 </div>
                     </button>
 
-                <SidebarContext.Provider value={{expanded, selectedTab, selectTab}}>
+                <SidebarContext.Provider value={{expanded, setExpanded, selectedTab, selectTab}}>
                     <ul className="flex-1 px-3">{children}</ul>
                 </SidebarContext.Provider>
                 {(session && status === "authenticated") ? UserSection(expanded, session) : null}
@@ -126,13 +127,15 @@ const SidebarItem: FunctionComponent<SidebarItemProps> = ({icon, text, href}) =>
     const expanded = context?.expanded ?? true;
     const active = context?.selectedTab === href;
     const selectTab = context?.selectTab;
+    const setExpanded = context?.setExpanded;
     const onClick = () => {
         selectTab?.(href.toLowerCase().replace(" ", ""));
+        setExpanded?.(false)
     };
 
     return (
         <Link href={href} onClick={() => onClick()}>
-            <li className={` relative flex items-center p-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${active ? "bg-black text-white" : "hover:underline"} flex-nowrap`}>
+            <li className={`relative flex items-center p-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${active ? "bg-black text-white" : "hover:underline"} flex-nowrap`}>
                 <div className="flex-shrink-0 text-2xl">{icon}</div>
 
                 <span
