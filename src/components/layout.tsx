@@ -21,8 +21,8 @@ type LayoutProps = {
 const subMenus: { [key: string]: TabName[] } = {
     "/insights": ["Reconciliation", "Revenue", "Fees", "Refund", "Disputes", "Returns"],
     "/integrations": ["Accounting Systems", "OMS", "PSPs"],
-    "/getpaid": ["Vendors", "Payments"],
-    "/pay": ["Customers", "Invoices"],
+    "/getpaid": [ "Customers","Payments"],
+    "/pay": ["Vendors", "Invoices"],
     "/reconciliation/settlements": ["Accounts Receivables", "Accounts Payables", "Balance Sheet", "Profit & Loss"],
 }
 

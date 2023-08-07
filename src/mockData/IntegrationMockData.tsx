@@ -16,6 +16,30 @@ export const AccountingSystems: Integration[] = [
     status: "NotAdded"
   },
   {
+    name: "Datev",
+    description: "DATEV is a software service provider with a focus on tax consultancy and financial accounting.",
+    image_source: 'datev.png',
+    status: "ComingSoon"
+  },
+  {
+    name: "Quickbooks",
+    description: "Smart, simple online accounting software for small business",
+    image_source: 'quickbooks.png',
+    status: "ComingSoon"
+  },
+  {
+    name: "Xero",
+    description: "Xero online accounting software for your business connects you to your bank, accountant and bookkeeper",
+    image_source: 'xero.png',
+    status: "ComingSoon"
+  },
+  {
+    name: "Sage",
+    description: "From startup to enterprise solutions, Sage has innovative software to manage your accounting",
+    image_source: 'sage.png',
+    status: "ComingSoon"
+  },
+  {
     name: "Business Central",
     description: "Business Central is a portfolio of intelligent business applications that delivers superior operational efficiency and breakthrough customer experiences.",
     image_source: 'dynamics_365.jpeg',
@@ -55,6 +79,7 @@ export const AccountingSystems: Integration[] = [
     image_source: 'enkelbok.jpg',
     status: "ComingSoon"
   },
+
 ];
 
 export const PaymentServiceProvidors: Integration[] = [
@@ -91,6 +116,18 @@ export const PaymentServiceProvidors: Integration[] = [
 ];
 
 export const OrderManagementSystems: Integration[] = [
+  {
+    name: "Shopify",
+    description: "We're all about smoooth shopping, online and in-store",
+    image_source: 'shopify.png',
+    status: "NotAdded"
+  },
+  {
+    name: "Amazon",
+    description: "We're all about smoooth shopping, online and in-store",
+    image_source: 'amazon.png',
+    status: "NotAdded"
+  },
   {
     name: "Big Commerce",
     description: "We're all about smoooth shopping, online and in-store",
