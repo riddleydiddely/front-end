@@ -158,8 +158,7 @@ const EmptyInvoice: React.FC = () => {
         {main}
     </div>;
 }
-
-function Customer() {
+function Vendor() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOpenModal = () => {
@@ -171,22 +170,22 @@ function Customer() {
     };
 
     return    <div className="flex-1 flex flex-col rounded-l-xl justify-between mx-auto max-w-7xl p-12 sm:px-6 lg:px-8 bg-base-200">
-        <h1 className={"text-4xl font-extrabold"}>Customers</h1>
+        <h1 className={"text-4xl font-extrabold"}>Vendors</h1>
         <div>
             <div className={"flex align-middle justify-center items-center p-10"}>
-                <img className={"h-72  rounded-2xl p-4"} src={"/empty_cart.svg"} alt={""}/>
+                <img className={"h-72  rounded-2xl p-4"} src={"/void.svg"} alt={""}/>
             </div>
             <div className={"flex flex-col align-middle items-center my-10"}>
 
-                <p className={"font-extrabold text-xl"}>Add your firs customer</p>
-                <p>Send payment request by adding customer details</p>
+                <p className={"font-extrabold text-xl"}>Add your first vendor</p>
+                <p>Save vendor details and their preferred way of getting paid</p>
             </div>
         </div>
-        <Button handleModal={handleOpenModal} text={"Add customers"}/>
-        <VendorModal isOpen={isModalOpen} onClose={handleCloseModal} title={"Add a new customer"} subtitle={"Have multiple customers? "} />
-
+        <Button text={"Add vendors"} handleModal={handleOpenModal} />
+        <VendorModal isOpen={isModalOpen} onClose={handleCloseModal} title={"Add a new vendor"} subtitle={"Have multiple vendors? "} />
     </div>;
 }
+
 
 const Pay: React.FC = () => {
     const [activeButton, setActiveButton] = useState("Inbox");
@@ -198,15 +197,16 @@ const Pay: React.FC = () => {
                 <MainPayArea activeButton={activeButton} setActiveButton={setActiveButton}/>
                 <EmptyInvoice/>
             </div>
-        case 'Customers':
+        case 'Vendors':
             return <div className={"flex"}>
-                <Customer />
+                <Vendor />
                 <div className={" flex flex-1  align-middle items-center justify-center text-gray-400"}>
 
-                    <p className={"mt-10 text-xl"}>You have no customers yet</p>
+                    <p className={"mt-10 text-xl"}>You have no vendors yet</p>
 
                 </div>
             </div>
+
         default:
             return null;
     }

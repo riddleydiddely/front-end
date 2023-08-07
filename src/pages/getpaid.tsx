@@ -116,7 +116,8 @@ const MainPayArea: React.FC<MainPayAreaProps> = ({activeButton, setActiveButton}
     );
 }
 
-function Vendor() {
+
+function Customer() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOpenModal = () => {
@@ -128,21 +129,23 @@ function Vendor() {
     };
 
     return    <div className="flex-1 flex flex-col rounded-l-xl justify-between mx-auto max-w-7xl p-12 sm:px-6 lg:px-8 bg-base-200">
-        <h1 className={"text-4xl font-extrabold"}>Vendors</h1>
+        <h1 className={"text-4xl font-extrabold"}>Customers</h1>
         <div>
             <div className={"flex align-middle justify-center items-center p-10"}>
-                <img className={"h-72  rounded-2xl p-4"} src={"/void.svg"} alt={""}/>
+                <img className={"h-72  rounded-2xl p-4"} src={"/empty_cart.svg"} alt={""}/>
             </div>
             <div className={"flex flex-col align-middle items-center my-10"}>
 
-                <p className={"font-extrabold text-xl"}>Add your firs vendor</p>
-                <p>Save vendor details and their preferred way of getting paid</p>
+                <p className={"font-extrabold text-xl"}>Add your first customer</p>
+                <p>Send payment request by adding customer details</p>
             </div>
         </div>
-        <Button text={"Add vendors"} handleModal={handleOpenModal} />
-        <VendorModal isOpen={isModalOpen} onClose={handleCloseModal} title={"Add a new vendor"} subtitle={"Have multiple vendors? "} />
+        <Button handleModal={handleOpenModal} text={"Add customers"}/>
+        <VendorModal isOpen={isModalOpen} onClose={handleCloseModal} title={"Add a new customer"} subtitle={"Have multiple customers? "} />
+
     </div>;
 }
+
 const Pay: React.FC = () => {
     const [activeButton, setActiveButton] = useState("Unsent");
     const currentTab = useContext(ActiveSubMenuContext);
@@ -151,12 +154,12 @@ const Pay: React.FC = () => {
     switch (currentTab) {
         case 'Payments':
             return <MainPayArea activeButton={activeButton} setActiveButton={setActiveButton}/>
-        case 'Vendors':
+        case 'Customers':
             return <div className={"flex"}>
-                <Vendor />
+                <Customer />
                 <div className={" flex flex-1  align-middle items-center justify-center text-gray-400"}>
 
-                    <p className={"mt-10 text-xl"}>You have no vendors yet</p>
+                    <p className={"mt-10 text-xl"}>You have no customers yet</p>
 
                 </div>
             </div>
