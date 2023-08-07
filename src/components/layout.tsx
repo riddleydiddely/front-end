@@ -5,11 +5,9 @@ import Dropdown from "@/components/src/components/dropdown";
 import Sidebar, { SidebarItem } from "@/components/src/components/sidebar";
 import { AiOutlineCalculator, AiOutlineHome, AiOutlineMoneyCollect } from "react-icons/ai";
 import { LiaFileInvoiceSolid } from "react-icons/lia";
-import { GiExpense } from "react-icons/gi";
 import { MdOutlineInsights } from "react-icons/md";
 import { PiPlugsConnected } from "react-icons/pi";
 import { useRouter } from "next/router";
-import { Tab } from "@/components/src/components/common/tabs";
 import {TabName} from "@/components/types/Tabs";
 
 type LayoutProps = {

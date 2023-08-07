@@ -13,7 +13,7 @@ const Settlements = () => {
 
 
   switch (currentTab) {
-    case 'Accounts Payables':
+    case 'Accounts Receivables':
       return <SettlementsTable></SettlementsTable>
     default:
       return null;
